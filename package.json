@@ -1,6 +1,7 @@
 {
   "private": true,
   "scripts": {
-    "dev": "pnpm --filter=demo run dev"
+    "dev": "pnpm --filter=demo run dev",
+    "build": "pnpm --filter=react-file-explorer run build"
   }
 }

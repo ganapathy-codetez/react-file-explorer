@@ -34,7 +34,7 @@ bun add @codetez/react-file-explorer
 ### Usage
 
 ```typescript
-import { FullFileBrowser } from '@codetez/chonky'
+import { FullFileBrowser } from '@codetez/react-file-explorer'
 import { ChonkyIconFA } from '@aperturerobotics/chonky-icon-fontawesome'
 
 export function MyComponent() {
