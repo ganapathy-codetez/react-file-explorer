@@ -12,8 +12,8 @@ export type FileActionData<Action extends FileAction> = {
 
 export type FileActionState<ExtraState extends object = AnyObject> = {
   /**
-   * The ID of the Chonky instance that dispatched this action. This is useful if
-   * you're reusing the same action handler for multiple Chonky instances.
+   * The ID of the Explorer instance that dispatched this action. This is useful if
+   * you're reusing the same action handler for multiple Explorer instances.
    */
   instanceId: string;
   /**

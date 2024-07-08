@@ -2,8 +2,8 @@ import React, { useContext } from 'react';
 
 import { FileEntryProps } from '../../types/file-list.types';
 import { useLocalizedFileEntryStrings } from '../../util/i18n';
-import { ChonkyIconContext } from '../../util/icon-helper';
-import { makeLocalChonkyStyles } from '../../util/styles';
+import { ExplorerIconContext } from '../../util/icon-helper';
+import { makeLocalExplorerStyles } from '../../util/styles';
 import { TextPlaceholder } from '../external/TextPlaceholder';
 import { useFileEntryHtmlProps, useFileEntryState } from './FileEntry-hooks';
 import { FileEntryName } from './FileEntryName';
@@ -17,12 +17,12 @@ export const CompactEntry: React.FC<FileEntryProps> = React.memo(
     const { fileModDateString, fileSizeString } = useLocalizedFileEntryStrings(file);
 
     const classes = useStyles(entryState);
-    const ChonkyIcon = useContext(ChonkyIconContext);
+    const ExplorerIcon = useContext(ExplorerIconContext);
     const fileEntryHtmlProps = useFileEntryHtmlProps(file);
     return (
       <div className={classes.listFileEntry} {...fileEntryHtmlProps}>
         <div className={classes.listFileEntryIcon}>
-          <ChonkyIcon icon={entryState.icon} spin={entryState.iconSpin} fixedWidth={true} />
+          <ExplorerIcon icon={entryState.icon} spin={entryState.iconSpin} fixedWidth={true} />
         </div>
         <div className={classes.listFileEntryDescription}>
           <div className={classes.listFileEntryName} title={file ? file.name : undefined}>
@@ -37,14 +37,14 @@ export const CompactEntry: React.FC<FileEntryProps> = React.memo(
             </div>
           </div>
         </div>
-        <div className="chonky-file-entry-outline"></div>
-        <div className="chonky-file-entry-selection"></div>
+        <div className="explorer-file-entry-outline"></div>
+        <div className="explorer-file-entry-selection"></div>
       </div>
     );
   },
 );
 
-const useStyles = makeLocalChonkyStyles((theme) => ({
+const useStyles = makeLocalExplorerStyles((theme) => ({
   listFileEntry: {
     fontSize: theme.listFileEntry.fontSize,
     alignItems: 'center',

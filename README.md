@@ -5,14 +5,13 @@
 </div>
 
 <p align="center">
-    <img src="./assets/image.png" alt="Chonky v2 Logo" width="500" />
+    <img src="./assets/image.png" alt="Banner" width="500" />
 </p>
 
 > A file explorer component for React. It tries to recreate the native file
-browsing experience in your browser. This means your users can make selections, drag
-& drop files, toggle between _List_ and _Grid_ file views, use keyboard shortcuts, and
-much more!
-
+> browsing experience in your browser. This means your users can make selections, drag
+> & drop files, toggle between _List_ and _Grid_ file views, use keyboard shortcuts, and
+> much more!
 
 ### Installation
 
@@ -21,12 +20,15 @@ Install it using your favourite package manager.
 ```sh
 npm install @codetez/react-file-explorer
 ```
+
 ```sh
 yarn add @codetez/react-file-explorer
 ```
+
 ```sh
 pnpm add @codetez/react-file-explorer
 ```
+
 ```sh
 bun add @codetez/react-file-explorer
 ```
@@ -34,17 +36,28 @@ bun add @codetez/react-file-explorer
 ### Usage
 
 ```typescript
-import { FullFileBrowser } from '@codetez/react-file-explorer'
-import { ChonkyIconFA } from '@aperturerobotics/chonky-icon-fontawesome'
+import  {
+  FileBrowser,
+  FileNavbar,
+  FileToolbar,
+  FileList,
+  FileContextMenu,
+  IconFA
+} from '@codetez/react-file-explorer'
 
 export function MyComponent() {
-    return <FullFileBrowser
-      files={[]}
-      darkMode={true}
-      iconComponent={ChonkyIconFA}
-    />
+    return (
+      <FileBrowser iconComponent={IconFA} files={files}>
+          <FileNavbar />
+          <FileToolbar />
+          <FileList />
+          <FileContextMenu />
+      </FileBrowser>
+    );
 }
 ```
+
+### Documentation
 
 ### [Click here for documentation and examples.](https://chonky.io/)
 

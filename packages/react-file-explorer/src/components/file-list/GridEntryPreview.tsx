@@ -8,16 +8,16 @@ import React, { useContext, useEffect } from 'react';
 import { Nullable } from 'tsdef';
 
 import { DndEntryState } from '../../types/file-list.types';
-import { ChonkyIconName } from '../../types/icons.types';
-import { ChonkyIconContext } from '../../util/icon-helper';
-import { c, important, makeLocalChonkyStyles } from '../../util/styles';
+import { IconName } from '../../types/icons.types';
+import { ExplorerIconContext } from '../../util/icon-helper';
+import { c, important, makeLocalExplorerStyles } from '../../util/styles';
 import { FileThumbnail } from './FileThumbnail';
 import { GridEntryDndIndicator } from './GridEntryDndIndicator';
 
 export type FileEntryState = {
   childrenCount: Nullable<number>;
   color: string;
-  icon: ChonkyIconName | string;
+  icon: IconName | string;
   thumbnailUrl: Nullable<string>;
   iconSpin: boolean;
   selected: boolean;
@@ -56,7 +56,7 @@ export const GridEntryPreviewFolder: React.FC<FileEntryPreviewProps> = React.mem
 });
 GridEntryPreviewFolder.displayName = 'GridEntryPreviewFolder';
 
-const useFolderStyles = makeLocalChonkyStyles((theme) => ({
+const useFolderStyles = makeLocalExplorerStyles((theme) => ({
   previewFile: {
     borderRadius: theme.gridFileEntry.borderRadius,
     position: 'relative',
@@ -133,7 +133,7 @@ export const GridEntryPreviewFile: React.FC<FileEntryPreviewProps> = React.memo(
 
   const fileClasses = useFileStyles(entryState);
   const commonClasses = useCommonEntryStyles(entryState);
-  const ChonkyIcon = useContext(ChonkyIconContext);
+  const ExplorerIcon = useContext(ExplorerIconContext);
   const className = c({
     [fileClasses.previewFile]: true,
     [externalClassName || '']: !!externalClassName,
@@ -142,7 +142,7 @@ export const GridEntryPreviewFile: React.FC<FileEntryPreviewProps> = React.memo(
     <div className={className}>
       <GridEntryDndIndicator className={fileClasses.dndIndicator} dndState={dndState} />
       <div className={fileClasses.fileIcon}>
-        <ChonkyIcon icon={entryState.icon} spin={entryState.iconSpin} />
+        <ExplorerIcon icon={entryState.icon} spin={entryState.iconSpin} />
       </div>
       <div className={commonClasses.selectionIndicator}></div>
       <FileThumbnail className={fileClasses.thumbnail} thumbnailUrl={entryState.thumbnailUrl} />
@@ -151,7 +151,7 @@ export const GridEntryPreviewFile: React.FC<FileEntryPreviewProps> = React.memo(
 });
 GridEntryPreviewFile.displayName = 'GridEntryPreviewFile';
 
-const useFileStyles = makeLocalChonkyStyles((theme) => ({
+const useFileStyles = makeLocalExplorerStyles((theme) => ({
   previewFile: {
     boxShadow: (state: FileEntryState) => {
       const shadows: string[] = [];
@@ -190,7 +190,7 @@ const useFileStyles = makeLocalChonkyStyles((theme) => ({
   },
 }));
 
-export const useCommonEntryStyles = makeLocalChonkyStyles(() => ({
+export const useCommonEntryStyles = makeLocalExplorerStyles(() => ({
   selectionIndicator: {
     display: (state: FileEntryState) => (state.selected ? 'block' : 'none'),
     background:

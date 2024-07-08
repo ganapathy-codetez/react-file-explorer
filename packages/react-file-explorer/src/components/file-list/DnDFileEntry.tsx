@@ -5,7 +5,7 @@ import { DndEntryState } from '../../types/file-list.types';
 import { FileData } from '../../types/file.types';
 import { useDndHoverOpen, useFileEntryDnD } from '../../util/dnd';
 import { FileHelper } from '../../util/file-helper';
-import { makeLocalChonkyStyles } from '../../util/styles';
+import { makeLocalExplorerStyles } from '../../util/styles';
 
 export interface DnDFileEntryProps {
   file: Nullable<FileData>;
@@ -26,7 +26,7 @@ export const DnDFileEntry = React.memo(({ file, children }: DnDFileEntryProps) =
   );
 });
 
-export const useStyles = makeLocalChonkyStyles(() => ({
+export const useStyles = makeLocalExplorerStyles(() => ({
   fillParent: {
     height: '100%',
   },

@@ -19,7 +19,7 @@ import { defaultConfig } from '../../util/default-config';
 import { useFileBrowserHandle } from '../../util/file-browser-handle';
 import { getValueOrFallback } from '../../util/helpers';
 
-export const ChonkyBusinessLogicInner = React.memo(
+export const ExplorerBusinessLogicInner = React.memo(
   React.forwardRef<FileBrowserHandle, FileBrowserProps>((props, ref) => {
     // ==== Update Redux state
     usePropReduxUpdate(reduxActions.setRawFiles, props.files ?? initialRootState.rawFiles);
@@ -74,7 +74,7 @@ export const ChonkyBusinessLogicInner = React.memo(
     return null;
   }),
 );
-ChonkyBusinessLogicInner.displayName = 'ChonkyBusinessLogicInner';
+ExplorerBusinessLogicInner.displayName = 'ExplorerBusinessLogicInner';
 
-export const ChonkyBusinessLogic = React.memo(ChonkyBusinessLogicInner);
-ChonkyBusinessLogic.displayName = 'ChonkyBusinessLogic';
+export const ExplorerBusinessLogic = React.memo(ExplorerBusinessLogicInner);
+ExplorerBusinessLogic.displayName = 'ExplorerBusinessLogic';

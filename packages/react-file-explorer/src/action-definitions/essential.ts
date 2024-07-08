@@ -19,11 +19,11 @@ import {
   OpenFilesPayload,
   StartDragNDropPayload,
 } from '../types/action-payloads.types';
-import { ChonkyIconName } from '../types/icons.types';
+import { IconName } from '../types/icons.types';
 import { FileHelper } from '../util/file-helper';
 import { defineFileAction } from '../util/helpers';
 import { Logger } from '../util/logger';
-import { ChonkyActions } from './index';
+import { ExplorerActions } from './index';
 
 export const EssentialActions = {
   /**
@@ -39,7 +39,7 @@ export const EssentialActions = {
       if (payload.clickType === 'double') {
         if (FileHelper.isOpenable(payload.file)) {
           reduxDispatch(
-            thunkRequestFileAction(ChonkyActions.OpenFiles, {
+            thunkRequestFileAction(ExplorerActions.OpenFiles, {
               targetFile: payload.file,
 
               // To simulate Windows Explorer and Nautilus behaviour,
@@ -147,7 +147,7 @@ export const EssentialActions = {
         // hotkey manager for the Open Files action.
         if (selectSelectionSize(getReduxState()) === 0) {
           reduxDispatch(
-            thunkRequestFileAction(ChonkyActions.OpenFiles, {
+            thunkRequestFileAction(ExplorerActions.OpenFiles, {
               targetFile: payload.file,
               files: [payload.file],
             }),
@@ -203,7 +203,7 @@ export const EssentialActions = {
       const { draggedFile, selectedFiles } = payload as EndDragNDropPayload;
       const droppedFiles = selectedFiles.length > 0 ? selectedFiles : [draggedFile];
       reduxDispatch(
-        thunkRequestFileAction(ChonkyActions.MoveFiles, {
+        thunkRequestFileAction(ExplorerActions.MoveFiles, {
           ...payload,
           files: droppedFiles,
         }),
@@ -244,7 +244,7 @@ export const EssentialActions = {
         name: 'Go up a directory',
         toolbar: true,
         contextMenu: false,
-        icon: ChonkyIconName.openParentFolder,
+        icon: IconName.openParentFolder,
         iconOnly: true,
       },
     } as const,
@@ -253,7 +253,7 @@ export const EssentialActions = {
       const parentFolder = selectParentFolder(reduxState);
       if (FileHelper.isOpenable(parentFolder)) {
         reduxDispatch(
-          thunkRequestFileAction(ChonkyActions.OpenFiles, {
+          thunkRequestFileAction(ExplorerActions.OpenFiles, {
             targetFile: parentFolder,
             files: [parentFolder],
           }),
@@ -261,7 +261,7 @@ export const EssentialActions = {
       } else if (!reduxState.forceEnableOpenParent) {
         Logger.warn(
           'Open parent folder effect was triggered even though the parent folder' +
-            ' is not openable. This indicates a bug in presentation components.',
+          ' is not openable. This indicates a bug in presentation components.',
         );
       }
     },

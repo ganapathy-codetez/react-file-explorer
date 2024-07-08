@@ -2,8 +2,8 @@ import React, { useContext, useMemo } from 'react';
 
 import { DndEntryState, FileEntryProps } from '../../types/file-list.types';
 import { useLocalizedFileEntryStrings } from '../../util/i18n';
-import { ChonkyIconContext } from '../../util/icon-helper';
-import { c, makeLocalChonkyStyles } from '../../util/styles';
+import { ExplorerIconContext } from '../../util/icon-helper';
+import { c, makeLocalExplorerStyles } from '../../util/styles';
 import { TextPlaceholder } from '../external/TextPlaceholder';
 import { useDndIcon, useFileEntryHtmlProps, useFileEntryState } from './FileEntry-hooks';
 import { FileEntryName } from './FileEntryName';
@@ -28,14 +28,14 @@ export const ListEntry: React.FC<FileEntryProps> = React.memo(({ file, selected,
   );
   const classes = useStyles(styleState);
   const commonClasses = useCommonEntryStyles(entryState);
-  const ChonkyIcon = useContext(ChonkyIconContext);
+  const ExplorerIcon = useContext(ExplorerIconContext);
   const fileEntryHtmlProps = useFileEntryHtmlProps(file);
   return (
     <div className={classes.listFileEntry} {...fileEntryHtmlProps}>
       <div className={commonClasses.focusIndicator}></div>
       <div className={c([commonClasses.selectionIndicator, classes.listFileEntrySelection])}></div>
       <div className={classes.listFileEntryIcon}>
-        <ChonkyIcon
+        <ExplorerIcon
           icon={dndIconName ?? entryState.icon}
           spin={dndIconName ? false : entryState.iconSpin}
           fixedWidth={true}
@@ -54,7 +54,7 @@ export const ListEntry: React.FC<FileEntryProps> = React.memo(({ file, selected,
   );
 });
 
-const useStyles = makeLocalChonkyStyles((theme) => ({
+const useStyles = makeLocalExplorerStyles((theme) => ({
   listFileEntry: {
     boxShadow: `inset ${theme.palette.divider} 0 -1px 0`,
     fontSize: theme.listFileEntry.fontSize,

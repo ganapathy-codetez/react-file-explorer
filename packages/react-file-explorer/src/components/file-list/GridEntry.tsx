@@ -2,7 +2,7 @@ import React from 'react';
 
 import { FileEntryProps } from '../../types/file-list.types';
 import { FileHelper } from '../../util/file-helper';
-import { c, makeLocalChonkyStyles } from '../../util/styles';
+import { c, makeLocalExplorerStyles } from '../../util/styles';
 import { useFileEntryHtmlProps, useFileEntryState } from './FileEntry-hooks';
 import { FileEntryName } from './FileEntryName';
 import { FileEntryState, GridEntryPreviewFile, GridEntryPreviewFolder } from './GridEntryPreview';
@@ -31,7 +31,7 @@ export const GridEntry: React.FC<FileEntryProps> = React.memo(({ file, selected,
 });
 GridEntry.displayName = 'GridEntry';
 
-const useFileEntryStyles = makeLocalChonkyStyles((theme) => ({
+const useFileEntryStyles = makeLocalExplorerStyles((theme) => ({
   gridFileEntry: {
     flexDirection: 'column',
     display: 'flex',

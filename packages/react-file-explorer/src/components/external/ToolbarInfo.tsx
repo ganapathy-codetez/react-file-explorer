@@ -12,9 +12,9 @@ import Typography from '@mui/material/Typography';
 
 import { selectHiddenFileCount, selectors, selectSelectionSize } from '../../redux/selectors';
 import { getI18nId, I18nNamespace } from '../../util/i18n';
-import { important, makeGlobalChonkyStyles } from '../../util/styles';
+import { important, makeGlobalExplorerStyles } from '../../util/styles';
 
-export interface ToolbarInfoProps {}
+export interface ToolbarInfoProps { }
 
 export const ToolbarInfo: React.FC<ToolbarInfoProps> = React.memo(() => {
   const classes = useStyles();
@@ -72,7 +72,7 @@ export const ToolbarInfo: React.FC<ToolbarInfoProps> = React.memo(() => {
   );
 });
 
-const useStyles = makeGlobalChonkyStyles((theme) => ({
+const useStyles = makeGlobalExplorerStyles((theme) => ({
   infoContainer: {
     height: theme.toolbar.size,
     display: 'flex',

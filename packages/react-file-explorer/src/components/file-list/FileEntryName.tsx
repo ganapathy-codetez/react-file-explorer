@@ -8,7 +8,7 @@ import React from 'react';
 import { Nullable } from 'tsdef';
 
 import { FileData } from '../../types/file.types';
-import { makeLocalChonkyStyles } from '../../util/styles';
+import { makeLocalExplorerStyles } from '../../util/styles';
 import { useFileNameComponent, useModifierIconComponents } from './FileEntry-hooks';
 
 export interface FileEntryNameProps {
@@ -30,7 +30,7 @@ export const FileEntryName: React.FC<FileEntryNameProps> = React.memo(({ file, c
 });
 FileEntryName.displayName = 'FileEntryName';
 
-const useStyles = makeLocalChonkyStyles((theme) => ({
+const useStyles = makeLocalExplorerStyles((theme) => ({
   modifierIcons: {
     color: theme.palette.text.primary,
     position: 'relative',

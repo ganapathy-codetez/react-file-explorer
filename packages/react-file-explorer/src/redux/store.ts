@@ -9,11 +9,11 @@ import { rootReducer } from './reducers';
 import { initialRootState } from './state';
 import { useStoreWatchers } from './watchers';
 
-export const useChonkyStore = (chonkyInstanceId: string) => {
+export const useExplorerStore = (explorerInstanceId: string) => {
   const store = useStaticValue(() => {
     const preloadedState: RootState = {
       ...initialRootState,
-      instanceId: chonkyInstanceId,
+      instanceId: explorerInstanceId,
     };
 
     return configureStore({
@@ -23,7 +23,7 @@ export const useChonkyStore = (chonkyInstanceId: string) => {
         getDefaultMiddleware({
           serializableCheck: false,
         }),
-      devTools: { name: `chonky_${chonkyInstanceId}` },
+      devTools: { name: `explorer_${explorerInstanceId}` },
     });
   });
   useStoreWatchers(store);
@@ -47,7 +47,7 @@ export const useParamSelector = <Args extends Array<any>, Value>(
 
 /**
  * DTE - DispatchThunkEffect. This method is used to decrease code duplication in
- * main Chonky method.
+ * main Explorer method.
  */
 export const useDTE = <Args extends Array<any>>(actionCreator: (...args: Args) => any, ...selectorParams: Args) => {
   const dispatch = useDispatch();

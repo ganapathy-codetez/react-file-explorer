@@ -5,7 +5,7 @@ import { Nullable, Undefinable } from 'tsdef';
 
 import { FileAction } from '../types/action.types';
 import { FileData } from '../types/file.types';
-import { ChonkyFormatters } from '../types/i18n.types';
+import { ExplorerFormatters } from '../types/i18n.types';
 import { FileHelper } from './file-helper';
 
 export enum I18nNamespace {
@@ -18,10 +18,10 @@ export enum I18nNamespace {
   FileActionGroups = 'actionGroups',
 }
 
-export const getI18nId = (namespace: I18nNamespace, stringId: string): string => `chonky.${namespace}.${stringId}`;
+export const getI18nId = (namespace: I18nNamespace, stringId: string): string => `explorer.${namespace}.${stringId}`;
 
 export const getActionI18nId = (actionId: string, stringId: string): string =>
-  `chonky.${I18nNamespace.FileActions}.${actionId}.${stringId}`;
+  `explorer.${I18nNamespace.FileActions}.${actionId}.${stringId}`;
 
 export const useLocalizedFileActionGroup = (groupName: string) => {
   const intl = useIntl();
@@ -66,7 +66,7 @@ export const useLocalizedFileActionStrings = (action: Nullable<FileAction>) => {
 
 export const useLocalizedFileEntryStrings = (file: Nullable<FileData>) => {
   const intl = useIntl();
-  const formatters = useContext(ChonkyFormattersContext);
+  const formatters = useContext(ExplorerFormattersContext);
   return useMemo(() => {
     return {
       fileModDateString: formatters.formatFileModDate(intl, file),
@@ -75,7 +75,7 @@ export const useLocalizedFileEntryStrings = (file: Nullable<FileData>) => {
   }, [file, formatters, intl]);
 };
 
-export const defaultFormatters: ChonkyFormatters = {
+export const defaultFormatters: ExplorerFormatters = {
   formatFileModDate: (intl: IntlShape, file: Nullable<FileData>): Nullable<string> => {
     const safeModDate = FileHelper.getModDate(file);
     if (safeModDate) {
@@ -105,4 +105,4 @@ export const defaultFormatters: ChonkyFormatters = {
   },
 };
 
-export const ChonkyFormattersContext = createContext(defaultFormatters);
+export const ExplorerFormattersContext = createContext(defaultFormatters);

@@ -8,12 +8,12 @@ import React, { CSSProperties, useCallback, useEffect, useMemo, useRef, useState
 import { useSelector } from 'react-redux';
 import { VariableSizeGrid } from 'react-window';
 
-import { ChonkyActions } from '../../action-definitions';
+import { ExplorerActions } from '../../action-definitions';
 import { selectFileViewConfig, selectors } from '../../redux/selectors';
 import { FileViewConfigGrid } from '../../types/file-view.types';
 import { RootState } from '../../types/redux.types';
 import { useInstanceVariable } from '../../util/hooks-helpers';
-import { makeGlobalChonkyStyles, useIsMobileBreakpoint } from '../../util/styles';
+import { makeGlobalExplorerStyles, useIsMobileBreakpoint } from '../../util/styles';
 import { SmartFileEntry } from './FileEntry';
 
 export interface FileListGridProps {
@@ -112,7 +112,7 @@ export const GridContainer: React.FC<FileListGridProps> = React.memo((props) => 
 
   const displayFileIdsRef = useInstanceVariable(useSelector(selectors.getDisplayFileIds));
   const getItemKey = useCallback(
-    (data: { columnIndex: number; rowIndex: number; data: any }) => {
+    (data: { columnIndex: number; rowIndex: number; data: any; }) => {
       const index = data.rowIndex * gridConfigRef.current.columnCount + data.columnIndex;
 
       return displayFileIdsRef.current[index] ?? `loading-file-${index}`;
@@ -121,7 +121,7 @@ export const GridContainer: React.FC<FileListGridProps> = React.memo((props) => 
   );
 
   const cellRenderer = useCallback(
-    (data: { rowIndex: number; columnIndex: number; style: CSSProperties }) => {
+    (data: { rowIndex: number; columnIndex: number; style: CSSProperties; }) => {
       const gc = gridConfigRef;
       const index = data.rowIndex * gc.current.columnCount + data.columnIndex;
       const fileId = displayFileIds[index];
@@ -180,6 +180,6 @@ export const GridContainer: React.FC<FileListGridProps> = React.memo((props) => 
   return gridComponent;
 });
 
-const useStyles = makeGlobalChonkyStyles(() => ({
+const useStyles = makeGlobalExplorerStyles(() => ({
   gridContainer: {},
 }));

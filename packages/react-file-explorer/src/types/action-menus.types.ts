@@ -1,10 +1,10 @@
 import { Nullable } from 'tsdef';
-import { ChonkyIconName } from '../types/icons.types';
+import { IconName } from '../types/icons.types';
 
 export interface FileActionGroup {
   name: string;
   sortOrder: number;
-  icon?: Nullable<ChonkyIconName | string>;
+  icon?: Nullable<IconName | string>;
   fileActionIds: string[];
 }
 

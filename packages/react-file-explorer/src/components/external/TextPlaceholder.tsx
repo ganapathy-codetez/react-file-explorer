@@ -6,7 +6,7 @@
 
 import React from 'react';
 
-import { makeLocalChonkyStyles } from '../../util/styles';
+import { makeLocalExplorerStyles } from '../../util/styles';
 
 export interface TextPlaceholderProps {
   minLength: number;
@@ -26,7 +26,7 @@ export const TextPlaceholder: React.FC<TextPlaceholderProps> = React.memo((props
   return <span className={classes.textPlaceholder} dangerouslySetInnerHTML={{ __html: whitespace }} />;
 });
 
-const useStyles = makeLocalChonkyStyles(() => ({
+const useStyles = makeLocalExplorerStyles(() => ({
   '@keyframes loading-placeholder': {
     '0%': { opacity: 0.2 },
     '50%': { opacity: 0.4 },

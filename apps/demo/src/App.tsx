@@ -1,6 +1,5 @@
 import { AppBar, Box, Toolbar, Typography } from '@mui/material';
-import { FileBrowser, FileNavbar, FileToolbar, FileList, FileContextMenu } from '../../../packages/react-file-explorer/src/index';
-import { ChonkyIconFA } from '../../../packages/chonky-icon-fontawesome';
+import { FileBrowser, FileNavbar, FileToolbar, FileList, FileContextMenu, IconFA } from '../../../packages/react-file-explorer/src/index';
 import files from './files';
 import './App.css';
 
@@ -19,7 +18,7 @@ function App() {
 
       <Box sx={{ height: '500px', mt: 5, p: 5 }}>
         <FileBrowser
-          iconComponent={ChonkyIconFA}
+          iconComponent={IconFA}
           folderChain={pathEntries.map((name, idx) => ({
             id: `${idx}`,
             name,

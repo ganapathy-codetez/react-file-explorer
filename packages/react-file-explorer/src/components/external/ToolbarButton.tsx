@@ -10,19 +10,19 @@ import { Nullable } from 'tsdef';
 
 import { selectFileActionData } from '../../redux/selectors';
 import { useParamSelector } from '../../redux/store';
-import { ChonkyIconName } from '../../types/icons.types';
+import { IconName } from '../../types/icons.types';
 import { CustomVisibilityState } from '../../types/action.types';
 import { useFileActionProps, useFileActionTrigger } from '../../util/file-actions';
 import { useLocalizedFileActionStrings } from '../../util/i18n';
-import { ChonkyIconContext } from '../../util/icon-helper';
-import { c, important, makeGlobalChonkyStyles } from '../../util/styles';
+import { ExplorerIconContext } from '../../util/icon-helper';
+import { c, important, makeGlobalExplorerStyles } from '../../util/styles';
 
 export interface ToolbarButtonProps {
   className?: string;
   text: string;
   tooltip?: string;
   active?: boolean;
-  icon?: Nullable<ChonkyIconName | string>;
+  icon?: Nullable<IconName | string>;
   iconOnly?: boolean;
   onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void;
   disabled?: boolean;
@@ -32,12 +32,12 @@ export interface ToolbarButtonProps {
 export const ToolbarButton: React.FC<ToolbarButtonProps> = React.memo((props) => {
   const { className: externalClassName, text, tooltip, active, icon, iconOnly, onClick, disabled, dropdown } = props;
   const classes = useStyles();
-  const ChonkyIcon = useContext(ChonkyIconContext);
+  const ExplorerIcon = useContext(ExplorerIconContext);
 
   const iconComponent =
     icon || iconOnly ? (
       <div className={iconOnly ? '' : classes.iconWithText}>
-        <ChonkyIcon icon={icon ? icon : ChonkyIconName.fallbackIcon} fixedWidth={true} />
+        <ExplorerIcon icon={icon ? icon : IconName.fallbackIcon} fixedWidth={true} />
       </div>
     ) : null;
 
@@ -53,14 +53,14 @@ export const ToolbarButton: React.FC<ToolbarButtonProps> = React.memo((props) =>
       {text && !iconOnly && <span>{text}</span>}
       {dropdown && text && !iconOnly && (
         <div className={classes.iconDropdown}>
-          <ChonkyIcon icon={ChonkyIconName.dropdown} fixedWidth={true} />
+          <ExplorerIcon icon={IconName.dropdown} fixedWidth={true} />
         </div>
       )}
     </Button>
   );
 });
 
-const useStyles = makeGlobalChonkyStyles((theme) => ({
+const useStyles = makeGlobalExplorerStyles((theme) => ({
   baseButton: {
     fontSize: important(theme.toolbar.fontSize),
     textTransform: important('none'),

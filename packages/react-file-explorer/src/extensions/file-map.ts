@@ -4,7 +4,7 @@
 
 import { useCallback, useMemo, useState } from 'react';
 
-import { ChonkyActions } from '../action-definitions';
+import { ExplorerActions } from '../action-definitions';
 import { FileActionData } from '../types/action-handler.types';
 import { FileAction } from '../types/action.types';
 import { FileArray, FileData } from '../types/file.types';
@@ -124,13 +124,13 @@ export type FileMethods = ReturnType<typeof useFileMapMethods>['methods'];
 export const useFileActionHandler = (methods: FileMethods) => {
   return useCallback(
     (data: FileActionData<FileAction>) => {
-      if (data.id === ChonkyActions.OpenFiles.id) {
+      if (data.id === ExplorerActions.OpenFiles.id) {
         const { targetFile, files } = data.payload;
         const fileToOpen = targetFile ?? files[0];
         if (fileToOpen && FileHelper.isDirectory(fileToOpen)) {
           methods.setCurrentFolderId(fileToOpen.id);
         }
-      } else if (data.id === ChonkyActions.MoveFiles.id) {
+      } else if (data.id === ExplorerActions.MoveFiles.id) {
         methods.moveFiles(data.payload.files, data.payload.source!, data.payload.destination);
       }
     },

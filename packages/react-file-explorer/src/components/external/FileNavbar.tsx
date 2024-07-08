@@ -8,13 +8,13 @@ import Box from '@mui/material/Box';
 import Breadcrumbs from '@mui/material/Breadcrumbs';
 import React, { ReactElement, useMemo } from 'react';
 
-import { ChonkyActions } from '../../action-definitions/index';
-import { important, makeGlobalChonkyStyles } from '../../util/styles';
+import { ExplorerActions } from '../../action-definitions/index';
+import { important, makeGlobalExplorerStyles } from '../../util/styles';
 import { useFolderChainItems } from './FileNavbar-hooks';
 import { FolderChainButton } from './FolderChainButton';
 import { SmartToolbarButton } from './ToolbarButton';
 
-export interface FileNavbarProps {}
+export interface FileNavbarProps { }
 
 export const FileNavbar: React.FC<FileNavbarProps> = React.memo(() => {
   const classes = useStyles();
@@ -40,7 +40,7 @@ export const FileNavbar: React.FC<FileNavbarProps> = React.memo(() => {
   return (
     <Box className={classes.navbarWrapper}>
       <Box className={classes.navbarContainer}>
-        <SmartToolbarButton fileActionId={ChonkyActions.OpenParentFolder.id} />
+        <SmartToolbarButton fileActionId={ExplorerActions.OpenParentFolder.id} />
         <Breadcrumbs className={classes.navbarBreadcrumbs} classes={{ separator: classes.separator }}>
           {folderChainComponents}
         </Breadcrumbs>
@@ -49,7 +49,7 @@ export const FileNavbar: React.FC<FileNavbarProps> = React.memo(() => {
   );
 });
 
-const useStyles = makeGlobalChonkyStyles((theme) => ({
+const useStyles = makeGlobalExplorerStyles((theme) => ({
   navbarWrapper: {
     paddingBottom: theme.margins.rootLayoutMargin,
   },

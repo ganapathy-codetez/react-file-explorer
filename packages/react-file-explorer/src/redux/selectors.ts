@@ -129,7 +129,7 @@ const getSortedFileIds = createSelector(
   (fileIds, sortOrder, files, sortAction, showFolderFirst) => {
     if (!sortAction) {
       // We allow users to set the sort action ID to `null` if they want to use their
-      // own sorting mechanisms instead of relying on Chonky built-in sort.
+      // own sorting mechanisms instead of relying on Explorer built-in sort.
       return fileIds;
     }
 

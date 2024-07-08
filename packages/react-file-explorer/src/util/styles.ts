@@ -80,9 +80,9 @@ export const lightTheme = {
   },
 };
 
-export type ChonkyTheme = typeof lightTheme;
+export type ExplorerTheme = typeof lightTheme;
 
-export const darkThemeOverride: DeepPartial<ChonkyTheme> = {
+export const darkThemeOverride: DeepPartial<ExplorerTheme> = {
   gridFileEntry: {
     fileColorTint: 'rgba(50, 50, 50, 0.4)',
     folderBackColorTint: 'rgba(50, 50, 50, 0.4)',
@@ -90,7 +90,7 @@ export const darkThemeOverride: DeepPartial<ChonkyTheme> = {
   },
 };
 
-export const mobileThemeOverride: DeepPartial<ChonkyTheme> = {
+export const mobileThemeOverride: DeepPartial<ExplorerTheme> = {
   fontSizes: {
     rootPrimary: 13,
   },
@@ -125,21 +125,21 @@ export const getStripeGradient = (colorOne: string, colorTwo: string) =>
   `${colorTwo} 20px` +
   ')';
 
-export const makeLocalChonkyStyles = <C extends string = string>(
-  styles: (theme: ChonkyTheme & MuiTheme) => any,
+export const makeLocalExplorerStyles = <C extends string = string>(
+  styles: (theme: ExplorerTheme & MuiTheme) => any,
   // @ts-ignore
-): any => createUseStyles<ChonkyTheme, C>(styles);
+): any => createUseStyles<ExplorerTheme, C>(styles);
 
-export const makeGlobalChonkyStyles = <C extends string = string>(
-  makeStyles: (theme: ChonkyTheme & MuiTheme) => any,
+export const makeGlobalExplorerStyles = <C extends string = string>(
+  makeStyles: (theme: ExplorerTheme & MuiTheme) => any,
 ) => {
   const selectorMapping = {};
-  const makeGlobalStyles = (theme: ChonkyTheme) => {
+  const makeGlobalStyles = (theme: ExplorerTheme) => {
     const localStyles = makeStyles(theme as any);
     const globalStyles = {};
     const localSelectors = Object.keys(localStyles);
     localSelectors.map((localSelector) => {
-      const globalSelector = `chonky-${localSelector}`;
+      const globalSelector = `explorer-${localSelector}`;
       const jssSelector = `@global .${globalSelector}`;
       // @ts-ignore
       globalStyles[jssSelector] = localStyles[localSelector];
@@ -150,7 +150,7 @@ export const makeGlobalChonkyStyles = <C extends string = string>(
   };
 
   // @ts-ignore
-  const useStyles = createUseStyles<ChonkyTheme, C>(makeGlobalStyles as any);
+  const useStyles = createUseStyles<ExplorerTheme, C>(makeGlobalStyles as any);
   return (...args: any[]): any => {
     const styles = useStyles(...args);
     const classes = {};

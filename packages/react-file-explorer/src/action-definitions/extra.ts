@@ -1,4 +1,4 @@
-import { ChonkyIconName } from '../types/icons.types';
+import { IconName } from '../types/icons.types';
 import { defineFileAction } from '../util/helpers';
 
 export const ExtraActions = {
@@ -14,7 +14,7 @@ export const ExtraActions = {
       toolbar: true,
       contextMenu: true,
       group: 'Actions',
-      icon: ChonkyIconName.copy,
+      icon: IconName.copy,
     },
   } as const),
   /**
@@ -26,7 +26,7 @@ export const ExtraActions = {
       name: 'Create folder',
       toolbar: true,
       tooltip: 'Create a folder',
-      icon: ChonkyIconName.folderCreate,
+      icon: IconName.folderCreate,
     },
   } as const),
   /**
@@ -38,7 +38,7 @@ export const ExtraActions = {
       name: 'Upload files',
       toolbar: true,
       tooltip: 'Upload files',
-      icon: ChonkyIconName.upload,
+      icon: IconName.upload,
     },
   } as const),
   /**
@@ -52,7 +52,7 @@ export const ExtraActions = {
       toolbar: true,
       contextMenu: true,
       group: 'Actions',
-      icon: ChonkyIconName.download,
+      icon: IconName.download,
     },
   } as const),
   /**
@@ -67,7 +67,7 @@ export const ExtraActions = {
       toolbar: true,
       contextMenu: true,
       group: 'Actions',
-      icon: ChonkyIconName.trash,
+      icon: IconName.trash,
     },
   } as const),
 };

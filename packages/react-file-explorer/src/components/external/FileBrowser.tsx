@@ -13,17 +13,17 @@ import {
   ThemeOptions,
 } from '@mui/material/styles';
 
-import { useChonkyStore } from '../../redux/store';
+import { useExplorerStore } from '../../redux/store';
 import { FileBrowserHandle, FileBrowserProps } from '../../types/file-browser.types';
 import { defaultConfig } from '../../util/default-config';
 import { getValueOrFallback } from '../../util/helpers';
 import { useStaticValue } from '../../util/hooks-helpers';
-import { ChonkyFormattersContext, defaultFormatters } from '../../util/i18n';
-import { ChonkyIconContext } from '../../util/icon-helper';
+import { ExplorerFormattersContext, defaultFormatters } from '../../util/i18n';
+import { ExplorerIconContext } from '../../util/icon-helper';
 import { darkThemeOverride, lightTheme, mobileThemeOverride, useIsMobileBreakpoint } from '../../util/styles';
-import { ChonkyBusinessLogic } from '../internal/ChonkyBusinessLogic';
-import { ChonkyIconPlaceholder } from '../internal/ChonkyIconPlaceholder';
-import { ChonkyPresentationLayer } from '../internal/ChonkyPresentationLayer';
+import { ExplorerBusinessLogic } from '../internal/ExplorerBusinessLogic';
+import { ExplorerIconPlaceholder } from '../internal/ExplorerIconPlaceholder';
+import { ExplorerPresentationLayer } from '../internal/ExplorerPresentationLayer';
 
 // if (process.env.NODE_ENV === 'development') {
 //     const whyDidYouRender = require('@welldone-software/why-did-you-render');
@@ -32,7 +32,7 @@ import { ChonkyPresentationLayer } from '../internal/ChonkyPresentationLayer';
 //     });
 // }
 
-export const FileBrowser = React.forwardRef<FileBrowserHandle, FileBrowserProps & { children?: ReactNode }>(
+export const FileBrowser = React.forwardRef<FileBrowserHandle, FileBrowserProps & { children?: ReactNode; }>(
   (props, ref) => {
     const { instanceId, iconComponent, children } = props;
     const disableDragAndDrop = getValueOrFallback(
@@ -49,8 +49,8 @@ export const FileBrowser = React.forwardRef<FileBrowserHandle, FileBrowserProps 
     const i18n = getValueOrFallback(props.i18n, defaultConfig.i18n);
     const formatters = useMemo(() => ({ ...defaultFormatters, ...i18n?.formatters }), [i18n]);
 
-    const chonkyInstanceId = useStaticValue(() => instanceId ?? shortid.generate());
-    const store = useChonkyStore(chonkyInstanceId);
+    const explorerInstanceId = useStaticValue(() => instanceId ?? shortid.generate());
+    const store = useExplorerStore(explorerInstanceId);
 
     const isMobileBreakpoint = useIsMobileBreakpoint();
     const theme = useMemo(() => {
@@ -68,34 +68,34 @@ export const FileBrowser = React.forwardRef<FileBrowserHandle, FileBrowserProps 
       return isMobileBreakpoint ? merge(combinedTheme, mobileThemeOverride) : combinedTheme;
     }, [darkMode, isMobileBreakpoint]);
 
-    const chonkyComps = (
+    const explorerComps = (
       <>
-        <ChonkyBusinessLogic ref={ref} {...props} />
-        <ChonkyPresentationLayer>{children}</ChonkyPresentationLayer>
+        <ExplorerBusinessLogic ref={ref} {...props} />
+        <ExplorerPresentationLayer>{children}</ExplorerPresentationLayer>
       </>
     );
 
     return (
       <IntlProvider locale="en" defaultLocale="en" {...i18n}>
-        <ChonkyFormattersContext.Provider value={formatters}>
+        <ExplorerFormattersContext.Provider value={formatters}>
           <ReduxProvider store={store}>
             <ThemeProvider theme={theme}>
               <StyledEngineProvider injectFirst>
                 <MuiThemeProvider theme={theme}>
-                  <ChonkyIconContext.Provider
-                    value={iconComponent ?? defaultConfig.iconComponent ?? ChonkyIconPlaceholder}
+                  <ExplorerIconContext.Provider
+                    value={iconComponent ?? defaultConfig.iconComponent ?? ExplorerIconPlaceholder}
                   >
                     {disableDragAndDrop || disableDragAndDropProvider ? (
-                      chonkyComps
+                      explorerComps
                     ) : (
-                      <DndProvider backend={HTML5Backend}>{chonkyComps}</DndProvider>
+                      <DndProvider backend={HTML5Backend}>{explorerComps}</DndProvider>
                     )}
-                  </ChonkyIconContext.Provider>
+                  </ExplorerIconContext.Provider>
                 </MuiThemeProvider>
               </StyledEngineProvider>
             </ThemeProvider>
           </ReduxProvider>
-        </ChonkyFormattersContext.Provider>
+        </ExplorerFormattersContext.Provider>
       </IntlProvider>
     );
   },

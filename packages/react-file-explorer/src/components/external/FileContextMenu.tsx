@@ -14,15 +14,15 @@ import Menu from '@mui/material/Menu';
 import { reduxActions } from '../../redux/reducers';
 import { selectContextMenuConfig, selectContextMenuItems } from '../../redux/selectors';
 import { getI18nId, I18nNamespace } from '../../util/i18n';
-import { important, makeGlobalChonkyStyles } from '../../util/styles';
+import { important, makeGlobalExplorerStyles } from '../../util/styles';
 import { useContextMenuDismisser } from './FileContextMenu-hooks';
 import { SmartToolbarDropdownButton } from './ToolbarDropdownButton';
-import { ChonkyDispatch } from '../../types/redux.types';
+import { ExplorerDispatch } from '../../types/redux.types';
 
-export interface FileContextMenuProps {}
+export interface FileContextMenuProps { }
 
 export const FileContextMenu: React.FC<FileContextMenuProps> = React.memo(() => {
-  const dispatch: ChonkyDispatch = useDispatch();
+  const dispatch: ExplorerDispatch = useDispatch();
   useEffect(() => {
     dispatch(reduxActions.setContextMenuMounted(true));
     return () => {
@@ -96,7 +96,7 @@ export const FileContextMenu: React.FC<FileContextMenuProps> = React.memo(() => 
   );
 });
 
-const useStyles = makeGlobalChonkyStyles(() => ({
+const useStyles = makeGlobalExplorerStyles(() => ({
   contextMenuList: {
     paddingBottom: important(0),
     paddingTop: important(0),

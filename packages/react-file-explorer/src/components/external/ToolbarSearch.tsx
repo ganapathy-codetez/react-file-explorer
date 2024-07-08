@@ -13,14 +13,14 @@ import TextField from '@mui/material/TextField';
 
 import { reduxActions } from '../../redux/reducers';
 import { selectSearchString } from '../../redux/selectors';
-import { ChonkyIconName } from '../../types/icons.types';
+import { IconName } from '../../types/icons.types';
 import { useDebounce } from '../../util/hooks-helpers';
 import { getI18nId, I18nNamespace } from '../../util/i18n';
-import { ChonkyIconContext } from '../../util/icon-helper';
-import { important, makeGlobalChonkyStyles } from '../../util/styles';
-import { ChonkyDispatch } from '../../types/redux.types';
+import { ExplorerIconContext } from '../../util/icon-helper';
+import { important, makeGlobalExplorerStyles } from '../../util/styles';
+import { ExplorerDispatch } from '../../types/redux.types';
 
-export interface ToolbarSearchProps {}
+export interface ToolbarSearchProps { }
 
 export const ToolbarSearch: React.FC<ToolbarSearchProps> = React.memo(() => {
   const intl = useIntl();
@@ -30,11 +30,11 @@ export const ToolbarSearch: React.FC<ToolbarSearchProps> = React.memo(() => {
   });
 
   const classes = useStyles();
-  const ChonkyIcon = useContext(ChonkyIconContext);
+  const ExplorerIcon = useContext(ExplorerIconContext);
 
   const searchInputRef = useRef<HTMLInputElement>();
 
-  const dispatch: ChonkyDispatch = useDispatch();
+  const dispatch: ExplorerDispatch = useDispatch();
   const reduxSearchString = useSelector(selectSearchString);
 
   const [localSearchString, setLocalSearchString] = useState(reduxSearchString);
@@ -89,8 +89,8 @@ export const ToolbarSearch: React.FC<ToolbarSearchProps> = React.memo(() => {
         onKeyUp: handleKeyUp,
         startAdornment: (
           <InputAdornment className={classes.searchIcon} position="start">
-            <ChonkyIcon
-              icon={showLoadingIndicator ? ChonkyIconName.loading : ChonkyIconName.search}
+            <ExplorerIcon
+              icon={showLoadingIndicator ? IconName.loading : IconName.search}
               spin={showLoadingIndicator}
             />
           </InputAdornment>
@@ -102,7 +102,7 @@ export const ToolbarSearch: React.FC<ToolbarSearchProps> = React.memo(() => {
   );
 });
 
-const useStyles = makeGlobalChonkyStyles((theme) => ({
+const useStyles = makeGlobalExplorerStyles((theme) => ({
   searchFieldContainer: {
     height: theme.toolbar.size,
     width: 150,

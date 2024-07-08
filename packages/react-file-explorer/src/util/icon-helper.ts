@@ -9,11 +9,11 @@ import { createContext, ElementType, useMemo } from 'react';
 import ExactTrie from 'exact-trie';
 import { Nullable } from 'tsdef';
 
-import { ChonkyIconPlaceholder } from '../components/internal/ChonkyIconPlaceholder';
+import { ExplorerIconPlaceholder } from '../components/internal/ExplorerIconPlaceholder';
 import { FileData } from '../types/file.types';
-import { ChonkyIconName, ChonkyIconProps, FileIconData } from '../types/icons.types';
+import { IconName, ExplorerIconProps, FileIconData } from '../types/icons.types';
 
-export const ChonkyIconContext = createContext<ElementType<ChonkyIconProps>>(ChonkyIconPlaceholder);
+export const ExplorerIconContext = createContext<ElementType<ExplorerIconProps>>(ExplorerIconPlaceholder);
 
 export const VideoExtensions: string[] = [
   '3g2',
@@ -378,42 +378,42 @@ const getIconTrie = () => {
 
   const IconsToExtensions = [
     // Generic file types
-    [ChonkyIconName.license, ['license']],
-    [ChonkyIconName.config, ['sfk', 'ini', 'yml', 'toml', 'iml']],
-    [ChonkyIconName.model, ['3ds', 'obj', 'ply', 'fbx']],
-    [ChonkyIconName.database, ['csv', 'json', 'sql', 'sqlite', 'sqlite3', 'npy', 'npz', 'rec', 'idx', 'hdf5']],
-    [ChonkyIconName.text, ['txt', 'md', 'mdx']],
-    [ChonkyIconName.archive, ['zip', 'rar', 'tar', 'tar.gz', '7z']],
-    [ChonkyIconName.image, ImageExtensions],
-    [ChonkyIconName.video, VideoExtensions],
-    [ChonkyIconName.code, ['html', 'php', 'css', 'sass', 'scss', 'less', 'cpp', 'h', 'hpp', 'c', 'xml']],
-    [ChonkyIconName.info, ['bib', 'readme', 'nfo']],
-    [ChonkyIconName.key, ['pem', 'pub']],
-    [ChonkyIconName.lock, ['lock', 'lock.json', 'shrinkwrap.json']],
-    [ChonkyIconName.music, AudioExtensions],
-    [ChonkyIconName.terminal, ['run', 'sh']],
-    [ChonkyIconName.trash, ['.Trashes']],
-    [ChonkyIconName.users, ['authors', 'contributors']],
+    [IconName.license, ['license']],
+    [IconName.config, ['sfk', 'ini', 'yml', 'toml', 'iml']],
+    [IconName.model, ['3ds', 'obj', 'ply', 'fbx']],
+    [IconName.database, ['csv', 'json', 'sql', 'sqlite', 'sqlite3', 'npy', 'npz', 'rec', 'idx', 'hdf5']],
+    [IconName.text, ['txt', 'md', 'mdx']],
+    [IconName.archive, ['zip', 'rar', 'tar', 'tar.gz', '7z']],
+    [IconName.image, ImageExtensions],
+    [IconName.video, VideoExtensions],
+    [IconName.code, ['html', 'php', 'css', 'sass', 'scss', 'less', 'cpp', 'h', 'hpp', 'c', 'xml']],
+    [IconName.info, ['bib', 'readme', 'nfo']],
+    [IconName.key, ['pem', 'pub']],
+    [IconName.lock, ['lock', 'lock.json', 'shrinkwrap.json']],
+    [IconName.music, AudioExtensions],
+    [IconName.terminal, ['run', 'sh']],
+    [IconName.trash, ['.Trashes']],
+    [IconName.users, ['authors', 'contributors']],
 
     // OS file types
-    [ChonkyIconName.linux, ['AppImage']],
-    [ChonkyIconName.ubuntu, ['deb']],
-    [ChonkyIconName.windows, ['exe']],
+    [IconName.linux, ['AppImage']],
+    [IconName.ubuntu, ['deb']],
+    [IconName.windows, ['exe']],
 
     // Programming language file types
-    [ChonkyIconName.rust, ['rs', 'rlib']],
-    [ChonkyIconName.python, ['py', 'ipynb']],
-    [ChonkyIconName.nodejs, ['js', 'jsx', 'ts', 'tsx', 'd.ts']],
-    [ChonkyIconName.php, ['php']],
+    [IconName.rust, ['rs', 'rlib']],
+    [IconName.python, ['py', 'ipynb']],
+    [IconName.nodejs, ['js', 'jsx', 'ts', 'tsx', 'd.ts']],
+    [IconName.php, ['php']],
 
     // Development tools file types
-    [ChonkyIconName.git, ['.gitignore']],
+    [IconName.git, ['.gitignore']],
 
     // Other program file types
-    [ChonkyIconName.pdf, ['pdf']],
-    [ChonkyIconName.excel, ['xls', 'xlsx']],
-    [ChonkyIconName.word, ['doc', 'docx', 'odt']],
-    [ChonkyIconName.flash, ['swf']],
+    [IconName.pdf, ['pdf']],
+    [IconName.excel, ['xls', 'xlsx']],
+    [IconName.word, ['doc', 'docx', 'odt']],
+    [IconName.flash, ['swf']],
   ] as const;
 
   const exactTrie = new ExactTrie({ ignoreCase: true });
@@ -438,10 +438,10 @@ const iconTrie = getIconTrie();
 
 export const useIconData = (file: Nullable<FileData>): FileIconData => {
   return useMemo(() => {
-    if (!file) return { icon: ChonkyIconName.loading, colorCode: 0 };
-    if (file.isDir === true) return { icon: ChonkyIconName.folder, colorCode: 0 };
+    if (!file) return { icon: IconName.loading, colorCode: 0 };
+    if (file.isDir === true) return { icon: IconName.folder, colorCode: 0 };
 
     const match = iconTrie.getWithCheckpoints(file.name, '.', true);
-    return match ? match : { icon: ChonkyIconName.file, colorCode: 32 };
+    return match ? match : { icon: IconName.file, colorCode: 32 };
   }, [file]);
 };

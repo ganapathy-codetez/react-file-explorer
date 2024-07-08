@@ -2,11 +2,11 @@ import { useMemo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Nullable } from 'tsdef';
 
-import { ChonkyActions } from '../../action-definitions/index';
+import { ExplorerActions } from '../../action-definitions/index';
 import { selectFolderChain } from '../../redux/selectors';
 import { thunkRequestFileAction } from '../../redux/thunks/dispatchers.thunks';
 import { FileData } from '../../types/file.types';
-import { ChonkyDispatch } from '../../types/redux.types';
+import { ExplorerDispatch } from '../../types/redux.types';
 import { FileHelper } from '../../util/file-helper';
 
 export interface FolderChainItem {
@@ -17,7 +17,7 @@ export interface FolderChainItem {
 
 export const useFolderChainItems = (): FolderChainItem[] => {
   const folderChain = useSelector(selectFolderChain);
-  const dispatch: ChonkyDispatch = useDispatch();
+  const dispatch: ExplorerDispatch = useDispatch();
 
   const folderChainItems = useMemo(() => {
     const items: FolderChainItem[] = [];
@@ -32,12 +32,12 @@ export const useFolderChainItems = (): FolderChainItem[] => {
           !FileHelper.isOpenable(file) || i === folderChain.length - 1
             ? undefined
             : () =>
-                dispatch(
-                  thunkRequestFileAction(ChonkyActions.OpenFiles, {
-                    targetFile: file,
-                    files: [file],
-                  }),
-                ),
+              dispatch(
+                thunkRequestFileAction(ExplorerActions.OpenFiles, {
+                  targetFile: file,
+                  files: [file],
+                }),
+              ),
       });
     }
     return items;

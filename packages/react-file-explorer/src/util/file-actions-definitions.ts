@@ -1,9 +1,9 @@
 import { FileAction } from '../types/action.types';
-import { ChonkyIconName } from '../types/icons.types';
+import { IconName } from '../types/icons.types';
 
-const validateActionTypes = <T extends { [action: string]: FileAction }>(actionMap: T): T => actionMap;
+const validateActionTypes = <T extends { [action: string]: FileAction; }>(actionMap: T): T => actionMap;
 
-export const OldChonkyActions = validateActionTypes({
+export const OldExplorerActions = validateActionTypes({
   // Optional actions
   CopyFiles: {
     id: 'copy_files',
@@ -15,7 +15,7 @@ export const OldChonkyActions = validateActionTypes({
       contextMenu: true,
       group: 'Actions',
       dropdown: true,
-      icon: ChonkyIconName.copy,
+      icon: IconName.copy,
     },
   },
   CreateFolder: {
@@ -25,7 +25,7 @@ export const OldChonkyActions = validateActionTypes({
       toolbar: true,
       contextMenu: true,
       tooltip: 'Create a folder',
-      icon: ChonkyIconName.folderCreate,
+      icon: IconName.folderCreate,
     },
   },
   UploadFiles: {
@@ -35,7 +35,7 @@ export const OldChonkyActions = validateActionTypes({
       toolbar: true,
       contextMenu: true,
       tooltip: 'Upload files',
-      icon: ChonkyIconName.upload,
+      icon: IconName.upload,
     },
   },
   DownloadFiles: {
@@ -48,7 +48,7 @@ export const OldChonkyActions = validateActionTypes({
       group: 'Actions',
       tooltip: 'Download files',
       dropdown: true,
-      icon: ChonkyIconName.download,
+      icon: IconName.download,
     },
   },
   DeleteFiles: {
@@ -62,7 +62,7 @@ export const OldChonkyActions = validateActionTypes({
       group: 'Actions',
       tooltip: 'Delete files',
       dropdown: true,
-      icon: ChonkyIconName.trash,
+      icon: IconName.trash,
     },
   },
 });

@@ -2,13 +2,13 @@ import React, { UIEvent, useCallback, useContext, useMemo } from 'react';
 import { useSelector } from 'react-redux';
 import AutoSizer from 'react-virtualized-auto-sizer';
 
-import { ChonkyActions } from '../../action-definitions/index';
+import { ExplorerActions } from '../../action-definitions/index';
 import { selectCurrentFolder, selectFileViewConfig, selectors } from '../../redux/selectors';
 import { FileViewMode } from '../../types/file-view.types';
-import { ChonkyIconName } from '../../types/icons.types';
+import { IconName } from '../../types/icons.types';
 import { useFileDrop } from '../../util/dnd';
-import { ChonkyIconContext } from '../../util/icon-helper';
-import { c, getStripeGradient, makeGlobalChonkyStyles, makeLocalChonkyStyles } from '../../util/styles';
+import { ExplorerIconContext } from '../../util/icon-helper';
+import { c, getStripeGradient, makeGlobalExplorerStyles, makeLocalExplorerStyles } from '../../util/styles';
 import { FileListEmpty } from './FileListEmpty';
 import { GridContainer } from './GridContainer';
 import { ListContainer } from './ListContainer';
@@ -34,13 +34,13 @@ export const FileList: React.FC<FileListProps> = React.memo((props: FileListProp
   const classes = useStyles(viewConfig);
   const { onScroll } = props;
 
-  // In Chonky v0.x, this field was user-configurable. In Chonky v1.x+, we hardcode
-  // this to `true` to simplify configuration. Users can just wrap Chonky in their
+  // In Explorer v0.x, this field was user-configurable. In Explorer v1.x+, we hardcode
+  // this to `true` to simplify configuration. Users can just wrap Explorer in their
   // own `div` if they want to have finer control over the height.
   const fillParentContainer = true;
 
   const listRenderer = useCallback(
-    ({ width, height }: { width: number; height: number }) => {
+    ({ width, height }: { width: number; height: number; }) => {
       if (displayFileIds.length === 0) {
         return <FileListEmpty width={width} height={viewConfig.entryHeight} />;
       } else if (viewConfig.mode === FileViewMode.List) {
@@ -52,7 +52,7 @@ export const FileList: React.FC<FileListProps> = React.memo((props: FileListProp
     [displayFileIds, viewConfig],
   );
 
-  const ChonkyIcon = useContext(ChonkyIconContext);
+  const ExplorerIcon = useContext(ExplorerIconContext);
   return (
     <div
       onScroll={onScroll}
@@ -62,7 +62,7 @@ export const FileList: React.FC<FileListProps> = React.memo((props: FileListProp
     >
       <div className={localClasses.dndDropZone}>
         <div className={localClasses.dndDropZoneIcon}>
-          <ChonkyIcon icon={dndCanDrop ? ChonkyIconName.dndCanDrop : ChonkyIconName.dndCannotDrop} />
+          <ExplorerIcon icon={dndCanDrop ? IconName.dndCanDrop : IconName.dndCannotDrop} />
         </div>
       </div>
       <AutoSizer disableHeight={!fillParentContainer}>{listRenderer}</AutoSizer>
@@ -71,9 +71,9 @@ export const FileList: React.FC<FileListProps> = React.memo((props: FileListProp
 });
 FileList.displayName = 'FileList';
 
-const useLocalStyles = makeLocalChonkyStyles((theme) => ({
+const useLocalStyles = makeLocalExplorerStyles((theme) => ({
   fileListWrapper: {
-    minHeight: ChonkyActions.EnableGridView.fileViewConfig.entryHeight + 2,
+    minHeight: ExplorerActions.EnableGridView.fileViewConfig.entryHeight + 2,
     background: (state: StyleState) =>
       state.dndIsOverCurrent && state.dndCanDrop
         ? state.dndCanDrop
@@ -108,7 +108,7 @@ const useLocalStyles = makeLocalChonkyStyles((theme) => ({
   },
 }));
 
-const useStyles = makeGlobalChonkyStyles(() => ({
+const useStyles = makeGlobalExplorerStyles(() => ({
   fileListWrapper: {
     height: '100%',
     maxHeight: '100%',

@@ -5,7 +5,7 @@ import { thunkRequestFileAction } from '../redux/thunks/dispatchers.thunks';
 import { FileSelectionTransform } from '../types/action.types';
 import { FileViewMode } from '../types/file-view.types';
 import { FileData } from '../types/file.types';
-import { ChonkyIconName } from '../types/icons.types';
+import { IconName } from '../types/icons.types';
 import { FileHelper } from '../util/file-helper';
 import { defineFileAction } from '../util/helpers';
 import { EssentialActions } from './essential';
@@ -26,7 +26,7 @@ export const DefaultActions = {
         toolbar: true,
         contextMenu: true,
         group: 'Actions',
-        icon: ChonkyIconName.openFiles,
+        icon: IconName.openFiles,
       },
     } as const,
     ({ state, reduxDispatch }) => {
@@ -49,12 +49,12 @@ export const DefaultActions = {
       toolbar: true,
       contextMenu: true,
       group: 'Actions',
-      icon: ChonkyIconName.selectAllFiles,
+      icon: IconName.selectAllFiles,
     },
     selectionTransform: (({ fileIds, hiddenFileIds }) => {
       const newSelection = new Set<string>();
       fileIds.map((fileId) => {
-        // We don't need to check if file is selectable because Chonky does
+        // We don't need to check if file is selectable because Explorer does
         // it own checks internally.
         if (!hiddenFileIds.has(fileId)) newSelection.add(fileId);
       });
@@ -72,7 +72,7 @@ export const DefaultActions = {
       toolbar: true,
       contextMenu: true,
       group: 'Actions',
-      icon: ChonkyIconName.clearSelection,
+      icon: IconName.clearSelection,
     },
     selectionTransform: (({ prevSelection }) => {
       if (prevSelection.size === 0) return null;
@@ -91,7 +91,7 @@ export const DefaultActions = {
     button: {
       name: 'Switch to List',
       toolbar: true,
-      icon: ChonkyIconName.list,
+      icon: IconName.list,
       // iconOnly: true,
       group: 'Options',
     },
@@ -111,7 +111,7 @@ export const DefaultActions = {
     button: {
       name: 'Switch to Compact',
       toolbar: true,
-      icon: ChonkyIconName.compact,
+      icon: IconName.compact,
       // iconOnly: true,
       group: 'Options',
     },
@@ -125,7 +125,7 @@ export const DefaultActions = {
     button: {
       name: 'Switch to Grid',
       toolbar: true,
-      icon: ChonkyIconName.smallThumbnail,
+      icon: IconName.smallThumbnail,
       // iconOnly: true,
       group: 'Options',
     },
@@ -223,7 +223,7 @@ export const DefaultActions = {
     button: {
       name: 'Enable dark mode',
       toolbar: true,
-      icon: ChonkyIconName.list,
+      icon: IconName.list,
       iconOnly: true,
     },
   } as const),

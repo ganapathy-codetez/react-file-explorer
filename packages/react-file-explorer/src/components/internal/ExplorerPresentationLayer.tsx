@@ -11,31 +11,31 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { reduxActions } from '../../redux/reducers';
 import { selectClearSelectionOnOutsideClick, selectFileActionIds, selectIsDnDDisabled } from '../../redux/selectors';
-import { ChonkyDispatch } from '../../types/redux.types';
+import { ExplorerDispatch } from '../../types/redux.types';
 import { useDndContextAvailable } from '../../util/dnd-fallback';
 import { elementIsInsideButton } from '../../util/helpers';
-import { makeGlobalChonkyStyles } from '../../util/styles';
+import { makeGlobalExplorerStyles } from '../../util/styles';
 import { useContextMenuTrigger } from '../external/FileContextMenu-hooks';
 import { DnDFileListDragLayer } from '../file-list/DnDFileListDragLayer';
 import { HotkeyListener } from './HotkeyListener';
 
-export interface ChonkyPresentationLayerProps {
+export interface ExplorerPresentationLayerProps {
   children?: React.ReactNode;
 }
 
-export const ChonkyPresentationLayer: React.FC<ChonkyPresentationLayerProps> = ({ children }) => {
-  const dispatch: ChonkyDispatch = useDispatch();
+export const ExplorerPresentationLayer: React.FC<ExplorerPresentationLayerProps> = ({ children }) => {
+  const dispatch: ExplorerDispatch = useDispatch();
   const fileActionIds = useSelector(selectFileActionIds);
   const dndDisabled = useSelector(selectIsDnDDisabled);
   const clearSelectionOnOutsideClick = useSelector(selectClearSelectionOnOutsideClick);
 
-  // Deal with clicks outside of Chonky
+  // Deal with clicks outside of Explorer
   const handleClickAway = useCallback(
     (event: MouseEvent | TouchEvent) => {
       if (!clearSelectionOnOutsideClick || elementIsInsideButton(event.target)) {
         // We only clear out the selection on outside click if the click target
         // was not a button. We don't want to clear out the selection when a
-        // button is clicked because Chonky users might want to trigger some
+        // button is clicked because Explorer users might want to trigger some
         // selection-related action on that button click.
         return;
       }
@@ -59,7 +59,7 @@ export const ChonkyPresentationLayer: React.FC<ChonkyPresentationLayerProps> = (
   const classes = useStyles();
   return (
     <ClickAwayListener onClickAway={handleClickAway}>
-      <Box className={classes.chonkyRoot} onContextMenu={showContextMenu}>
+      <Box className={classes.explorerRoot} onContextMenu={showContextMenu}>
         {!dndDisabled && dndContextAvailable && <DnDFileListDragLayer />}
         {hotkeyListenerComponents}
         {children ? children : null}
@@ -68,8 +68,8 @@ export const ChonkyPresentationLayer: React.FC<ChonkyPresentationLayerProps> = (
   );
 };
 
-const useStyles = makeGlobalChonkyStyles((theme) => ({
-  chonkyRoot: {
+const useStyles = makeGlobalExplorerStyles((theme) => ({
+  explorerRoot: {
     backgroundColor: theme.palette.background.paper,
     border: theme.root.borderStyle ? `${theme.root.borderStyle} ${theme.palette.divider}` : undefined,
     padding: theme.margins.rootLayoutMargin,

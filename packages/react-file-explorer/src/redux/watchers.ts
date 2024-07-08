@@ -3,7 +3,7 @@ import watch from 'redux-watch';
 
 import { Store } from '@reduxjs/toolkit';
 
-import { ChonkyActions } from '../action-definitions';
+import { ExplorerActions } from '../action-definitions';
 import { RootState } from '../types/redux.types';
 import { FileSelection } from '../types/selection.types';
 import { selectSelectedFileIds, selectSelectionMap } from './selectors';
@@ -21,7 +21,7 @@ export const useStoreWatchers = (store: Store<RootState>) => {
       const selectedFilesIds = selectSelectedFileIds(store.getState());
       const selection = new Set<string>(selectedFilesIds);
       store.dispatch(
-        thunkRequestFileAction(ChonkyActions.ChangeSelection, {
+        thunkRequestFileAction(ExplorerActions.ChangeSelection, {
           selection,
         }) as any,
       );

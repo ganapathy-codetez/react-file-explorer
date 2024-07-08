@@ -3,13 +3,13 @@ import { MaybePromise, Nullable } from 'tsdef';
 import { FileActionState } from './action-handler.types';
 import { FileViewConfig } from './file-view.types';
 import { FileFilter, FileMap } from './file.types';
-import { ChonkyIconName } from './icons.types';
-import { ChonkyDispatch, RootState } from './redux.types';
+import { IconName } from './icons.types';
+import { ExplorerDispatch, RootState } from './redux.types';
 import { FileSortKeySelector } from './sort.types';
 
 export interface FileAction {
   /**
-   * Unique file action ID. If you set the action ID to one of the built-in Chonky
+   * Unique file action ID. If you set the action ID to one of the built-in Explorer
    * action action IDs, you custom action definition will override the built-in
    * definition.
    */
@@ -35,7 +35,7 @@ export interface FileAction {
    * When button is defined and `toolbar` or `contextMenu` is set to `true`, a
    * button will be added to the relevant UI component. Clicking on this button
    * will active this action. The appearance of the button will change based on
-   * the action definition and the current Chonky state.
+   * the action definition and the current Explorer state.
    */
   button?: FileActionButton;
   /**
@@ -46,7 +46,7 @@ export interface FileAction {
   sortKeySelector?: FileSortKeySelector;
   /**
    * When `fileViewConfig` is specified, triggering this action will apply the
-   * provided config to Chonky's file view.
+   * provided config to Explorer's file view.
    */
   fileViewConfig?: FileViewConfig;
   /**
@@ -62,7 +62,7 @@ export interface FileAction {
   selectionTransform?: FileSelectionTransform;
   /**
    * When effect is defined, it will be called right before dispatching the action to
-   * the user defined action handler. If the effect function returns a promise, Chonky
+   * the user defined action handler. If the effect function returns a promise, Explorer
    * will wait for the promise to resolve or fail before dispatching the action to the
    * handler. If this function returns `true`, the file action will NOT be dispatched
    * the the handler.
@@ -95,7 +95,7 @@ export interface FileActionButton {
   contextMenu?: boolean; // Whether to show the button in the context menu
   group?: string; // Button group (dropdown in toolbar or section in context menu)
   tooltip?: string; // Help tooltip text
-  icon?: ChonkyIconName | string | any; // Icon name
+  icon?: IconName | string | any; // Icon name
   iconOnly?: boolean; // Whether to only display the icon
 }
 
@@ -115,11 +115,11 @@ export type FileActionEffect<Action extends FileAction = any> = (data: {
   action: Action;
   payload: Action['__payloadType'];
   state: FileActionState<{}>; // extra state is empty on purpose
-  reduxDispatch: ChonkyDispatch;
+  reduxDispatch: ExplorerDispatch;
   getReduxState: () => RootState;
 }) => MaybePromise<undefined | boolean | void>;
 
-export type FileActionMap = { [actonId: string]: FileAction };
+export type FileActionMap = { [actonId: string]: FileAction; };
 
 export enum CustomVisibilityState {
   Hidden,

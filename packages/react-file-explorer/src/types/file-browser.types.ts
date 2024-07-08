@@ -3,14 +3,14 @@ import { Nullable } from 'tsdef';
 import { ThemeOptions as MuiThemeOptions } from '@mui/material/styles';
 import { DeepPartial } from 'tsdef';
 
-import { ChonkyActions } from '../action-definitions/index';
+import { ExplorerActions } from '../action-definitions/index';
 import { GenericFileActionHandler } from './action-handler.types';
 import { FileAction } from './action.types';
 import { FileArray } from './file.types';
 import { I18nConfig } from './i18n.types';
-import { ChonkyIconProps } from './icons.types';
+import { ExplorerIconProps } from './icons.types';
 import { ThumbnailGenerator } from './thumbnails.types';
-import { ChonkyTheme } from '../util/styles';
+import { ExplorerTheme } from '../util/styles';
 
 /**
  * File browser methods exposed to developers via the `FileBrowser` ref.
@@ -33,7 +33,7 @@ export interface FileBrowserHandle {
   setFileSelection(selection: Set<string>, reset?: boolean): void;
 
   /**
-   * Method used to programatically trigger file actions in Chonky.
+   * Method used to programatically trigger file actions in Explorer.
    * @param action A file action definition object
    * @param payload The payload expected by the action. If action does not expect
    * a payload, this should be set to `undefined`.
@@ -41,15 +41,15 @@ export interface FileBrowserHandle {
   requestFileAction<Action extends FileAction>(action: Action, payload: Action['__payloadType']): Promise<void>;
 }
 
-export type ChonkyActionUnion = (typeof ChonkyActions)[keyof typeof ChonkyActions];
+export type ExplorerActionUnion = (typeof ExplorerActions)[keyof typeof ExplorerActions];
 
 /**
  * Props for the `FileBrowser` component that is exposed to library users.
  */
 export interface FileBrowserProps {
   /**
-   * An ID used to identify this particular Chonky instance. Useful when there are
-   * multiple Chonky instances on the same page, and they need to interact with
+   * An ID used to identify this particular Explorer instance. Useful when there are
+   * multiple Explorer instances on the same page, and they need to interact with
    * each other. When no instance ID is provided, a random hash is used in its place.
    * Note that instance ID should remain static. Any changes to "instanceId" after
    * initial FileBrowser mount will be ignored.
@@ -82,7 +82,7 @@ export interface FileBrowserProps {
   /**
    * An action handler that will be called every time a file action is dispatched.
    */
-  onFileAction?: Nullable<GenericFileActionHandler<ChonkyActionUnion>>;
+  onFileAction?: Nullable<GenericFileActionHandler<ExplorerActionUnion>>;
 
   /**
    * The function that determines the thumbnail image URL for a file. It gets a file
@@ -122,42 +122,42 @@ export interface FileBrowserProps {
 
   /**
    * The flag that completely disables drag & drop functionality for this instance
-   * of Chonky.
+   * of Explorer.
    */
   disableDragAndDrop?: boolean;
 
   /**
    * The flag that is used to disable `react-dnd` context provider inside of this
-   * instance of Chonky, while keeping other drag & drop functionality in tact.
+   * instance of Explorer, while keeping other drag & drop functionality in tact.
    * Useful when you want to provide your own `react-dnd` context.
    */
   disableDragAndDropProvider?: boolean;
 
   /**
    * The ID of the sort-selector-setting action to activate by default. This field can
-   * be used to specify the default sort order in Chonky.
+   * be used to specify the default sort order in Explorer.
    */
   defaultSortActionId?: Nullable<string>;
 
   /**
    * The ID of the file-view-setting action to activate by default. This field can
-   * be used to specify the default file view in Chonky.
+   * be used to specify the default file view in Explorer.
    */
   defaultFileViewActionId?: string;
 
   /**
    * Determines whether the file selection should be cleared when user clicks
-   * anywhere outside of Chonky. By default, selection is cleared on outside click
+   * anywhere outside of Explorer. By default, selection is cleared on outside click
    * unless the click target is a button.
    */
   clearSelectionOnOutsideClick?: boolean;
 
   /**
-   * Icon component that will be used in this instance of Chonky. Note that this
-   * will only affect the current instance of Chonky. If you wanna set the icon
-   * component for all Chonky instances, use the global config.
+   * Icon component that will be used in this instance of Explorer. Note that this
+   * will only affect the current instance of Explorer. If you wanna set the icon
+   * component for all Explorer instances, use the global config.
    */
-  iconComponent?: ElementType<ChonkyIconProps>;
+  iconComponent?: ElementType<ExplorerIconProps>;
 
   /**
    * Enables dark mode theme.
@@ -165,7 +165,7 @@ export interface FileBrowserProps {
   darkMode?: boolean;
 
   /**
-   * Configuration for the `react-intl` i18n library. Chonky provides some default
+   * Configuration for the `react-intl` i18n library. Explorer provides some default
    * values, e.g. `locale` and `defaultLocale` are set to `en`. Any settings you
    * specify here will override the defaults.
    * @see https://formatjs.io/docs/react-intl/components
@@ -178,9 +178,9 @@ export interface FileBrowserProps {
   onScroll?: (e: UIEvent<HTMLDivElement>) => void;
 
   /**
-   * Overrides ChonkyTheme properties.
+   * Overrides ExplorerTheme properties.
    */
-  theme?: DeepPartial<ChonkyTheme>;
+  theme?: DeepPartial<ExplorerTheme>;
 
   /**
    * Overrides MuiThemeOptions properties.

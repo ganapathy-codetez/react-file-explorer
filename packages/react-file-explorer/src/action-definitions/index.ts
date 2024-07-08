@@ -4,36 +4,36 @@ import { ExtraActions } from './extra';
 
 export { OptionIds } from './option-ids';
 
-export const ChonkyActions = {
+export const ExplorerActions = {
   ...EssentialActions,
   ...DefaultActions,
   ...ExtraActions,
 };
 
 export const EssentialFileActions = [
-  ChonkyActions.MouseClickFile,
-  ChonkyActions.KeyboardClickFile,
-  ChonkyActions.StartDragNDrop,
-  ChonkyActions.EndDragNDrop,
-  ChonkyActions.MoveFiles,
-  ChonkyActions.ChangeSelection,
-  ChonkyActions.OpenFiles,
-  ChonkyActions.OpenParentFolder,
-  ChonkyActions.OpenFileContextMenu,
+  ExplorerActions.MouseClickFile,
+  ExplorerActions.KeyboardClickFile,
+  ExplorerActions.StartDragNDrop,
+  ExplorerActions.EndDragNDrop,
+  ExplorerActions.MoveFiles,
+  ExplorerActions.ChangeSelection,
+  ExplorerActions.OpenFiles,
+  ExplorerActions.OpenParentFolder,
+  ExplorerActions.OpenFileContextMenu,
 ];
 
 export const DefaultFileActions = [
-  ChonkyActions.OpenSelection,
-  ChonkyActions.SelectAllFiles,
-  ChonkyActions.ClearSelection,
-  ChonkyActions.EnableListView,
+  ExplorerActions.OpenSelection,
+  ExplorerActions.SelectAllFiles,
+  ExplorerActions.ClearSelection,
+  ExplorerActions.EnableListView,
   // TODO: Don't enable until compact view is fully supported
-  // ChonkyActions.EnableCompactView,
-  ChonkyActions.EnableGridView,
-  ChonkyActions.SortFilesByName,
-  ChonkyActions.SortFilesBySize,
-  ChonkyActions.SortFilesByDate,
-  ChonkyActions.ToggleHiddenFiles,
-  ChonkyActions.ToggleShowFoldersFirst,
-  ChonkyActions.FocusSearchInput,
+  // ExplorerActions.EnableCompactView,
+  ExplorerActions.EnableGridView,
+  ExplorerActions.SortFilesByName,
+  ExplorerActions.SortFilesBySize,
+  ExplorerActions.SortFilesByDate,
+  ExplorerActions.ToggleHiddenFiles,
+  ExplorerActions.ToggleShowFoldersFirst,
+  ExplorerActions.FocusSearchInput,
 ];

@@ -1,4 +1,4 @@
-import { ChonkyActions } from '../action-definitions/index';
+import { ExplorerActions } from '../action-definitions/index';
 import { RootState } from '../types/redux.types';
 import { SortOrder } from '../types/sort.types';
 
@@ -34,7 +34,7 @@ export const initialRootState: RootState = {
   selectionMap: {},
   disableSelection: false,
 
-  fileViewConfig: ChonkyActions.EnableGridView.fileViewConfig,
+  fileViewConfig: ExplorerActions.EnableGridView.fileViewConfig,
 
   sortActionId: null,
   sortOrder: SortOrder.ASC,

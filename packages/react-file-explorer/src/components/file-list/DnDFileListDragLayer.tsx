@@ -8,10 +8,10 @@ import React from 'react';
 import { useDragLayer } from 'react-dnd';
 import { Nullable } from 'tsdef';
 
-import { ChonkyDndFileEntryItem, ChonkyDndFileEntryType } from '../../types/dnd.types';
-import { makeGlobalChonkyStyles } from '../../util/styles';
+import { ExplorerDndFileEntryItem, ExplorerDndFileEntryType } from '../../types/dnd.types';
+import { makeGlobalExplorerStyles } from '../../util/styles';
 
-export interface DnDFileListDragLayerProps {}
+export interface DnDFileListDragLayerProps { }
 
 const layerStyles: React.CSSProperties = {
   position: 'fixed',
@@ -23,9 +23,9 @@ const layerStyles: React.CSSProperties = {
   height: '100%',
 };
 const getItemStyles = (
-  initialCursorOffset: Nullable<{ x: number; y: number }>,
-  initialFileOffset: Nullable<{ x: number; y: number }>,
-  currentFileOffset: Nullable<{ x: number; y: number }>,
+  initialCursorOffset: Nullable<{ x: number; y: number; }>,
+  initialFileOffset: Nullable<{ x: number; y: number; }>,
+  currentFileOffset: Nullable<{ x: number; y: number; }>,
 ) => {
   if (!initialCursorOffset || !initialFileOffset || !currentFileOffset) {
     return {
@@ -46,7 +46,7 @@ export const DnDFileListDragLayer: React.FC<DnDFileListDragLayerProps> = () => {
 
   const { itemType, item, initialCursorOffset, initialFileOffset, currentFileOffset, isDragging } = useDragLayer(
     (monitor) => ({
-      item: monitor.getItem() as ChonkyDndFileEntryItem,
+      item: monitor.getItem() as ExplorerDndFileEntryItem,
       itemType: monitor.getItemType(),
       initialCursorOffset: monitor.getInitialClientOffset(),
       initialFileOffset: monitor.getInitialSourceClientOffset(),
@@ -54,7 +54,7 @@ export const DnDFileListDragLayer: React.FC<DnDFileListDragLayerProps> = () => {
       isDragging: monitor.isDragging(),
     }),
   );
-  if (!isDragging || itemType !== ChonkyDndFileEntryType || !item.payload) {
+  if (!isDragging || itemType !== ExplorerDndFileEntryType || !item.payload) {
     return null;
   }
 
@@ -79,7 +79,7 @@ export const DnDFileListDragLayer: React.FC<DnDFileListDragLayerProps> = () => {
   );
 };
 
-const useStyles = makeGlobalChonkyStyles((theme) => ({
+const useStyles = makeGlobalExplorerStyles((theme) => ({
   fileDragPreview: {
     boxShadow: `2px 2px 5px ${theme.palette.divider}`,
     backgroundColor: theme.palette.background.default,

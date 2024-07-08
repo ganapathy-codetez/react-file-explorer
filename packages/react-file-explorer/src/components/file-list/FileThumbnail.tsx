@@ -8,7 +8,7 @@ import c from 'classnames';
 import React from 'react';
 import { Nullable } from 'tsdef';
 
-import { makeGlobalChonkyStyles } from '../../util/styles';
+import { makeGlobalExplorerStyles } from '../../util/styles';
 
 export interface FileThumbnailProps {
   className: string;
@@ -25,7 +25,7 @@ export const FileThumbnail: React.FC<FileThumbnailProps> = React.memo((props) =>
 });
 FileThumbnail.displayName = 'FileThumbnail';
 
-const useStyles = makeGlobalChonkyStyles(() => ({
+const useStyles = makeGlobalExplorerStyles(() => ({
   fileThumbnail: {
     backgroundRepeat: 'no-repeat',
     backgroundPosition: 'center',

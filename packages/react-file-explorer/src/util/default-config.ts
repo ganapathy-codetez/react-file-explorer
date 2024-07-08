@@ -1,8 +1,8 @@
-import { ChonkyActions } from '../action-definitions/index';
-import { ChonkyIconPlaceholder } from '../components/internal/ChonkyIconPlaceholder';
+import { ExplorerActions } from '../action-definitions/index';
+import { ExplorerIconPlaceholder } from '../components/internal/ExplorerIconPlaceholder';
 import { FileBrowserProps } from '../types/file-browser.types';
 
-export type ChonkyConfig = Pick<
+export type ExplorerConfig = Pick<
   FileBrowserProps,
   | 'fileActions'
   | 'onFileAction'
@@ -22,7 +22,7 @@ export type ChonkyConfig = Pick<
   | 'i18n'
 >;
 
-export const defaultConfig: ChonkyConfig = {
+export const defaultConfig: ExplorerConfig = {
   fileActions: null,
   onFileAction: null,
   thumbnailGenerator: null,
@@ -33,18 +33,18 @@ export const defaultConfig: ChonkyConfig = {
   hideToolbarInfo: false,
   disableDragAndDrop: false,
   disableDragAndDropProvider: false,
-  defaultSortActionId: ChonkyActions.SortFilesByName.id,
-  defaultFileViewActionId: ChonkyActions.EnableListView.id,
+  defaultSortActionId: ExplorerActions.SortFilesByName.id,
+  defaultFileViewActionId: ExplorerActions.EnableListView.id,
   clearSelectionOnOutsideClick: true,
-  iconComponent: ChonkyIconPlaceholder,
+  iconComponent: ExplorerIconPlaceholder,
   darkMode: false,
   i18n: {},
 };
 
-export const setChonkyDefaults = (config: Partial<ChonkyConfig>) => {
+export const setExplorerDefaults = (config: Partial<ExplorerConfig>) => {
   for (const key of Object.keys(defaultConfig)) {
     if (key in config) {
-      defaultConfig[key as keyof ChonkyConfig] = config[key as keyof ChonkyConfig] as any;
+      defaultConfig[key as keyof ExplorerConfig] = config[key as keyof ExplorerConfig] as any;
     }
   }
 };

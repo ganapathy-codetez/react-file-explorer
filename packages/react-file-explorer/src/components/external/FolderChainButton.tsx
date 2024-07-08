@@ -7,10 +7,10 @@
 import React, { useContext, useMemo } from 'react';
 
 import { DndEntryState } from '../../types/file-list.types';
-import { ChonkyIconName } from '../../types/icons.types';
+import { IconName } from '../../types/icons.types';
 import { useDndHoverOpen, useFileDrop } from '../../util/dnd';
-import { ChonkyIconContext } from '../../util/icon-helper';
-import { c, important, makeLocalChonkyStyles } from '../../util/styles';
+import { ExplorerIconContext } from '../../util/icon-helper';
+import { c, important, makeLocalExplorerStyles } from '../../util/styles';
 import { useDndIcon } from '../file-list/FileEntry-hooks';
 import { FolderChainItem } from './FileNavbar-hooks';
 import { ToolbarButton } from './ToolbarButton';
@@ -37,7 +37,7 @@ export const FolderChainButton: React.FC<FolderChainButtonProps> = React.memo(({
   );
   useDndHoverOpen(file, dndState);
   const dndIconName = useDndIcon(dndState);
-  const ChonkyIcon = useContext(ChonkyIconContext);
+  const ExplorerIcon = useContext(ExplorerIconContext);
 
   const classes = useStyles(dndState);
   const className = c({
@@ -46,13 +46,13 @@ export const FolderChainButton: React.FC<FolderChainButtonProps> = React.memo(({
     [classes.currentBreadcrumb]: current,
   });
   const text = file ? file.name : 'Loading...';
-  const icon = first && file?.folderChainIcon === undefined ? ChonkyIconName.folder : file?.folderChainIcon;
+  const icon = first && file?.folderChainIcon === undefined ? IconName.folder : file?.folderChainIcon;
 
   return (
     <div className={classes.buttonContainer} ref={file ? drop : null}>
       {file && dndIconName && (
         <div className={classes.dndIndicator}>
-          <ChonkyIcon icon={dndIconName} fixedWidth={true} />
+          <ExplorerIcon icon={dndIconName} fixedWidth={true} />
         </div>
       )}
       <ToolbarButton icon={icon} className={className} text={text} disabled={disabled} onClick={onClick} />
@@ -60,7 +60,7 @@ export const FolderChainButton: React.FC<FolderChainButtonProps> = React.memo(({
   );
 });
 
-const useStyles = makeLocalChonkyStyles((theme) => ({
+const useStyles = makeLocalExplorerStyles((theme) => ({
   buttonContainer: {
     position: 'relative',
   },

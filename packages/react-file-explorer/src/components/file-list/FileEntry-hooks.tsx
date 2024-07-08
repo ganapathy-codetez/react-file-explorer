@@ -2,15 +2,15 @@ import React, { HTMLProps, useCallback, useContext, useEffect, useMemo, useRef, 
 import { useDispatch, useSelector } from 'react-redux';
 import { Nullable, Undefinable } from 'tsdef';
 
-import { ChonkyActions } from '../../action-definitions/index';
+import { ExplorerActions } from '../../action-definitions/index';
 import { selectThumbnailGenerator } from '../../redux/selectors';
 import { thunkRequestFileAction } from '../../redux/thunks/dispatchers.thunks';
 import { DndEntryState } from '../../types/file-list.types';
 import { FileData } from '../../types/file.types';
-import { ChonkyIconName } from '../../types/icons.types';
-import { ChonkyDispatch } from '../../types/redux.types';
+import { IconName } from '../../types/icons.types';
+import { ExplorerDispatch } from '../../types/redux.types';
 import { FileHelper } from '../../util/file-helper';
-import { ChonkyIconContext, ColorsDark, ColorsLight, useIconData } from '../../util/icon-helper';
+import { ExplorerIconContext, ColorsDark, ColorsLight, useIconData } from '../../util/icon-helper';
 import { Logger } from '../../util/logger';
 import { TextPlaceholder } from '../external/TextPlaceholder';
 import { KeyboardClickEvent, MouseClickEvent } from '../internal/ClickableWrapper';
@@ -18,9 +18,9 @@ import { FileEntryState } from './GridEntryPreview';
 
 export const useFileEntryHtmlProps = (file: Nullable<FileData>): HTMLProps<HTMLDivElement> => {
   return useMemo(() => {
-    const dataProps: { [prop: string]: Undefinable<string> } = {
+    const dataProps: { [prop: string]: Undefinable<string>; } = {
       'data-test-id': 'file-entry',
-      'data-chonky-file-id': file ? file.id : undefined,
+      'data-explorer-file-id': file ? file.id : undefined,
     };
 
     return {
@@ -37,7 +37,7 @@ export const useFileEntryState = (file: Nullable<FileData>, selected: boolean, f
   return useMemo<FileEntryState>(() => {
     const fileColor = thumbnailUrl ? ColorsDark[iconData.colorCode] : ColorsLight[iconData.colorCode];
     const iconSpin = thumbnailLoading || !file;
-    const icon = thumbnailLoading ? ChonkyIconName.loading : iconData.icon;
+    const icon = thumbnailLoading ? IconName.loading : iconData.icon;
 
     return {
       childrenCount: FileHelper.getChildrenCount(file),
@@ -52,32 +52,32 @@ export const useFileEntryState = (file: Nullable<FileData>, selected: boolean, f
 };
 
 export const useDndIcon = (dndState: DndEntryState) => {
-  let dndIconName: Nullable<ChonkyIconName> = null;
+  let dndIconName: Nullable<IconName> = null;
   if (dndState.dndIsOver) {
     const showDropIcon = dndState.dndCanDrop;
-    dndIconName = showDropIcon ? ChonkyIconName.dndCanDrop : ChonkyIconName.dndCannotDrop;
+    dndIconName = showDropIcon ? IconName.dndCanDrop : IconName.dndCannotDrop;
   } else if (dndState.dndIsDragging) {
-    dndIconName = ChonkyIconName.dndDragging;
+    dndIconName = IconName.dndDragging;
   }
 
   return dndIconName;
 };
 
 export const useModifierIconComponents = (file: Nullable<FileData>) => {
-  const modifierIcons: ChonkyIconName[] = useMemo(() => {
-    const modifierIcons: ChonkyIconName[] = [];
-    if (FileHelper.isHidden(file)) modifierIcons.push(ChonkyIconName.hidden);
-    if (FileHelper.isSymlink(file)) modifierIcons.push(ChonkyIconName.symlink);
-    if (FileHelper.isEncrypted(file)) modifierIcons.push(ChonkyIconName.lock);
+  const modifierIcons: IconName[] = useMemo(() => {
+    const modifierIcons: IconName[] = [];
+    if (FileHelper.isHidden(file)) modifierIcons.push(IconName.hidden);
+    if (FileHelper.isSymlink(file)) modifierIcons.push(IconName.symlink);
+    if (FileHelper.isEncrypted(file)) modifierIcons.push(IconName.lock);
     return modifierIcons;
   }, [file]);
-  const ChonkyIcon = useContext(ChonkyIconContext);
+  const ExplorerIcon = useContext(ExplorerIconContext);
   const modifierIconComponents = useMemo(
-    () => modifierIcons.map((icon, index) => <ChonkyIcon key={`file-modifier-${index}`} icon={icon} />),
-    // For some reason ESLint marks `ChonkyIcon` as an unnecessary dependency,
+    () => modifierIcons.map((icon, index) => <ExplorerIcon key={`file-modifier-${index}`} icon={icon} />),
+    // For some reason ESLint marks `ExplorerIcon` as an unnecessary dependency,
     // but we expect it can change at runtime so we disable the check.
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    [ChonkyIcon, modifierIcons],
+    [ExplorerIcon, modifierIcons],
   );
   return modifierIconComponents;
 };
@@ -108,7 +108,7 @@ export const useFileNameComponent = (file: Nullable<FileData>) => {
     return (
       <>
         {name}
-        {extension && <span className="chonky-file-entry-description-title-extension">{extension}</span>}
+        {extension && <span className="explorer-file-entry-description-title-extension">{extension}</span>}
       </>
     );
   }, [file]);
@@ -157,7 +157,7 @@ export const useThumbnailUrl = (file: Nullable<FileData>) => {
 };
 
 export const useFileClickHandlers = (file: Nullable<FileData>, displayIndex: number) => {
-  const dispatch: ChonkyDispatch = useDispatch();
+  const dispatch: ExplorerDispatch = useDispatch();
 
   // Prepare base handlers
   const onMouseClick = useCallback(
@@ -165,7 +165,7 @@ export const useFileClickHandlers = (file: Nullable<FileData>, displayIndex: num
       if (!file) return;
 
       dispatch(
-        thunkRequestFileAction(ChonkyActions.MouseClickFile, {
+        thunkRequestFileAction(ExplorerActions.MouseClickFile, {
           clickType,
           file,
           fileDisplayIndex: displayIndex,
@@ -182,7 +182,7 @@ export const useFileClickHandlers = (file: Nullable<FileData>, displayIndex: num
       if (!file) return;
 
       dispatch(
-        thunkRequestFileAction(ChonkyActions.KeyboardClickFile, {
+        thunkRequestFileAction(ExplorerActions.KeyboardClickFile, {
           file,
           fileDisplayIndex: displayIndex,
           enterKey: event.enterKey,

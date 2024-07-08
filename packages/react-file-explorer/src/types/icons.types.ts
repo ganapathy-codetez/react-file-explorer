@@ -1,6 +1,6 @@
 import React from 'react';
 
-export enum ChonkyIconName {
+export enum IconName {
   // Misc
   loading = 'loading',
   dropdown = 'dropdown',
@@ -87,12 +87,12 @@ export enum ChonkyIconName {
 }
 
 export interface FileIconData {
-  icon: ChonkyIconName | string;
+  icon: IconName | string;
   colorCode: number;
 }
 
-export interface ChonkyIconProps {
-  icon: ChonkyIconName | string;
+export interface ExplorerIconProps {
+  icon: IconName | string;
   spin?: boolean;
   className?: string;
   fixedWidth?: boolean;

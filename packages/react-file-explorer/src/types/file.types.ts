@@ -1,6 +1,6 @@
 import { Nullable, Undefinable } from 'tsdef';
 
-import { ChonkyIconName } from './icons.types';
+import { IconName } from './icons.types';
 
 export interface FileData {
   id: string; // (Required) String that uniquely identifies the file
@@ -23,9 +23,9 @@ export interface FileData {
 
   // Default preview overriding
   color?: string; // Color to use for this file
-  icon?: ChonkyIconName | string | any; // Icon to use for this file
+  icon?: IconName | string | any; // Icon to use for this file
   thumbnailUrl?: string; // Automatically load thumbnail from this URL
-  folderChainIcon?: Nullable<ChonkyIconName | string | any>; // Folder chain icon
+  folderChainIcon?: Nullable<IconName | string | any>; // Folder chain icon
 
   [property: string]: any; // Any other user-defined property
 }
@@ -33,5 +33,5 @@ export interface FileData {
 export type FileArray<FT extends FileData = FileData> = Nullable<FT>[];
 export type FileFilter = (file: Nullable<FileData>) => boolean;
 
-export type FileMap<FT extends FileData = FileData> = { [fileId: string]: FT };
-export type FileIdTrueMap = { [fileId: string]: Undefinable<true> };
+export type FileMap<FT extends FileData = FileData> = { [fileId: string]: FT; };
+export type FileIdTrueMap = { [fileId: string]: Undefinable<true>; };

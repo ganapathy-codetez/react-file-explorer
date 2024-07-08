@@ -11,7 +11,7 @@ import { FixedSizeList } from 'react-window';
 import { selectFileViewConfig, selectors } from '../../redux/selectors';
 import { FileViewMode } from '../../types/file-view.types';
 import { useInstanceVariable } from '../../util/hooks-helpers';
-import { makeLocalChonkyStyles } from '../../util/styles';
+import { makeLocalExplorerStyles } from '../../util/styles';
 import { SmartFileEntry } from './FileEntry';
 
 export interface FileListListProps {
@@ -36,7 +36,7 @@ export const ListContainer: React.FC<FileListListProps> = React.memo((props) => 
   const classes = useStyles();
   const listComponent = useMemo(() => {
     // When entry size is null, we use List view
-    const rowRenderer = (data: { index: number; style: CSSProperties }) => {
+    const rowRenderer = (data: { index: number; style: CSSProperties; }) => {
       return (
         <div style={data.style}>
           <SmartFileEntry
@@ -66,7 +66,7 @@ export const ListContainer: React.FC<FileListListProps> = React.memo((props) => 
   return listComponent;
 });
 
-const useStyles = makeLocalChonkyStyles((theme) => ({
+const useStyles = makeLocalExplorerStyles((theme) => ({
   listContainer: {
     borderTop: `solid 1px ${theme.palette.divider}`,
   },

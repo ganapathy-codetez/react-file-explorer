@@ -70,15 +70,15 @@ export type RootState = {
   hideToolbarInfo: boolean;
 
   // State to use inside effects
-  lastClick: Nullable<{ index: number; fileId: string }>;
+  lastClick: Nullable<{ index: number; fileId: string; }>;
 
   // Context menu
   contextMenuMounted: boolean;
   contextMenuConfig: Nullable<ContextMenuConfig>;
 };
 
-export type ChonkyThunk<ReturnType = void> = ThunkAction<ReturnType, RootState, null, Action<string>>;
+export type ExplorerThunk<ReturnType = void> = ThunkAction<ReturnType, RootState, null, Action<string>>;
 
-export type ChonkyDispatch = ThunkDispatch<RootState, null, Action<string>>;
+export type ExplorerDispatch = ThunkDispatch<RootState, null, Action<string>>;
 
-export type ChonkyStore = Store<RootState>;
+export type ExplorerStore = Store<RootState>;

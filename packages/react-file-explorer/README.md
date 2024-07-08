@@ -1,57 +1,84 @@
+<div align="center">
+
+# React File Explorer
+
+</div>
+
 <p align="center">
-    <img src="https://chonky.io/chonky-logo-v2.png" alt="Chonky v2 Logo" width="500" />
-    <br />
-    <a href="https://www.npmjs.com/package/chonky">
-        <img
-            alt="NPM package"
-            src="https://img.shields.io/npm/v/chonky.svg?style=flat&colorB=ffac5c"
-        />
-    </a>
-    <a href="https://tldrlegal.com/license/mit-license">
-        <img
-            alt="MIT license"
-            src="https://img.shields.io/npm/l/chonky?style=flat&colorB=dcd67a"
-        />
-    </a>
-    <a href="https://www.npmjs.com/package/chonky">
-        <img
-            alt="NPM downloads"
-            src="https://img.shields.io/npm/dt/chonky?style=flat&colorB=aef498"
-        />
-    </a>
-    <a href="https://github.com/TimboKZ/Chonky">
-        <img
-            alt="GitHub stars"
-            src="https://img.shields.io/github/stars/TimboKZ/Chonky?style=flat&colorB=50f4cc"
-        />
-    </a>
-    <a href="https://discord.gg/4HJaFn9">
-        <img
-            alt="Chat on Discord"
-            src="https://img.shields.io/discord/696033621986770957?label=discord&style=flat&colorB=08acee"
-        />
-    </a>
-    <br />
-    <br />
-    <br />
+    <img src="../../assets/image.png" alt="Banner" width="500" />
 </p>
 
-Chonky is a file browser component for React. It tries to recreate the native file
-browsing experience in your browser. This means your users can make selections, drag
-& drop files, toggle between _List_ and _Grid_ file views, use keyboard shortcuts, and
-much more!
+> A file explorer component for React. It tries to recreate the native file
+> browsing experience in your browser. This means your users can make selections, drag
+> & drop files, toggle between _List_ and _Grid_ file views, use keyboard shortcuts, and
+> much more!
+
+### Installation
+
+Install it using your favourite package manager.
+
+```sh
+npm install @codetez/react-file-explorer
+```
+
+```sh
+yarn add @codetez/react-file-explorer
+```
+
+```sh
+pnpm add @codetez/react-file-explorer
+```
+
+```sh
+bun add @codetez/react-file-explorer
+```
+
+### Usage
+
+```typescript
+import  {
+  FileBrowser,
+  FileNavbar,
+  FileToolbar,
+  FileList,
+  FileContextMenu,
+  IconFA
+} from '@codetez/react-file-explorer'
+
+export function MyComponent() {
+    return (
+      <FileBrowser iconComponent={IconFA} files={files}>
+          <FileNavbar />
+          <FileToolbar />
+          <FileList />
+          <FileContextMenu />
+      </FileBrowser>
+    );
+}
+```
+
+### Documentation
 
 ### [Click here for documentation and examples.](https://chonky.io/)
 
-> Please [create an issue](https://github.com/TimboKZ/Chonky/issues) if you have a
-> problem or want to request a feature.
+## Developing
 
-## Preview
+Install dependencies:
 
-<p align="center">
-  <img src="https://chonky.io/chonky-v2-preview.gif" alt="Chonky preview">
-</p>
+```
+pnpm install
+```
+
+Build:
+
+```
+pnpm run build
+```
 
 ## License
+
+MIT © CodeTez Technologies Private Limited. 2024
+
+MIT © Aperture Robotics, LLC. 2023
 
 MIT © [Tim Kuzhagaliyev](https://github.com/TimboKZ) 2020
