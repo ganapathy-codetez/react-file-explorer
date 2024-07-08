@@ -1,51 +1,40 @@
+<div align="center">
+
+# React File Explorer
+
+</div>
+
 <p align="center">
-    <img src="https://chonky.io/chonky-logo-v2.png" alt="Chonky v2 Logo" width="500" />
-    <br />
-    <a href="https://www.npmjs.com/package/@aperturerobotics/chonky">
-        <img
-            alt="NPM package"
-            src="https://img.shields.io/npm/v/@aperturerobotics/chonky.svg?style=flat&colorB=ffac5c"
-        />
-    </a>
-    <a href="https://tldrlegal.com/license/mit-license">
-        <img
-            alt="MIT license"
-            src="https://img.shields.io/npm/l/chonky?style=flat&colorB=dcd67a"
-        />
-    </a>
-    <a href="https://discord.gg/4HJaFn9">
-        <img
-            alt="Chat on Discord"
-            src="https://img.shields.io/discord/696033621986770957?label=discord&style=flat&colorB=08acee"
-        />
-    </a>
-    <br />
-    <br />
-    <br />
+    <img src="./assets/image.png" alt="Chonky v2 Logo" width="500" />
 </p>
 
-Chonky is a file browser component for React. It tries to recreate the native file
+> A file explorer component for React. It tries to recreate the native file
 browsing experience in your browser. This means your users can make selections, drag
 & drop files, toggle between _List_ and _Grid_ file views, use keyboard shortcuts, and
 much more!
 
-This is a fork of [Chonky] by [TimboKZ].
 
-[Chonky]: https://github.com/TimboKZ/Chonky
-[TimboKZ]: https://github.com/TimboKZ
+### Installation
+
+Install it using your favourite package manager.
+
+```sh
+npm install @codetez/react-file-explorer
+```
+```sh
+yarn add @codetez/react-file-explorer
+```
+```sh
+pnpm add @codetez/react-file-explorer
+```
+```sh
+bun add @codetez/react-file-explorer
+```
 
 ### Usage
 
-Add the forked npm packages:
-
-```
-yarn add @aperturerobotics/chonky @aperturerobotics/chonky-icon-fontawesome
-```
-
-Add to your app:
-
 ```typescript
-import { FullFileBrowser } from '@aperturerobotics/chonky'
+import { FullFileBrowser } from '@codetez/chonky'
 import { ChonkyIconFA } from '@aperturerobotics/chonky-icon-fontawesome'
 
 export function MyComponent() {
@@ -59,24 +48,23 @@ export function MyComponent() {
 
 ### [Click here for documentation and examples.](https://chonky.io/)
 
-> Please [create an issue](https://github.com/aperturerobotics/react-chonky/issues) if you have a
-> problem or want to request a feature.
-
 ## Developing
 
 Install dependencies:
 
 ```
-yarn
+pnpm install
 ```
 
 Build:
 
 ```
-yarn build
+pnpm run build
 ```
 
 ## License
+
+MIT © CodeTez Technologies Private Limited. 2024
 
 MIT © Aperture Robotics, LLC. 2023
 
