@@ -13,38 +13,38 @@ export { ChonkyActions, DefaultFileActions, OptionIds } from './action-definitio
 export { defineFileAction } from './util/helpers';
 export { ChonkyIconContext } from './util/icon-helper';
 export { FileHelper } from './util/file-helper';
-export { makeGlobalChonkyStyles, ChonkyTheme } from './util/styles';
+export { makeGlobalChonkyStyles, type ChonkyTheme } from './util/styles';
 
-export { FileData, FileArray } from './types/file.types';
-export {
+export type { FileData, FileArray } from './types/file.types';
+export type {
   FileAction,
   FileActionEffect,
   FileSelectionTransform,
   FileActionButton,
   CustomVisibilityState,
 } from './types/action.types';
-export {
+export type {
   GenericFileActionHandler,
   MapFileActionsToData,
   FileActionData,
   FileActionState,
 } from './types/action-handler.types';
-export { ChonkyActionUnion } from './types/file-browser.types';
-export { ChonkyIconName } from './types/icons.types';
+export type { ChonkyActionUnion } from './types/file-browser.types';
+export type { ChonkyIconName } from './types/icons.types';
 export type ChonkyIconProps = import('./types/icons.types').ChonkyIconProps;
-export { FileBrowserHandle, FileBrowserProps } from './types/file-browser.types';
-export { FileViewMode } from './types/file-view.types';
+export type { FileBrowserHandle, FileBrowserProps } from './types/file-browser.types';
+export type { FileViewMode } from './types/file-view.types';
 export type FileViewConfig = import('./types/file-view.types').FileViewConfig;
 export type FileViewConfigGrid = import('./types/file-view.types').FileViewConfigGrid;
 export type FileViewConfigList = import('./types/file-view.types').FileViewConfigList;
-export { ThumbnailGenerator } from './types/thumbnails.types';
+export type { ThumbnailGenerator } from './types/thumbnails.types';
 
-export { I18nConfig, ChonkyFormatters } from './types/i18n.types';
+export type { I18nConfig, ChonkyFormatters } from './types/i18n.types';
 export { defaultFormatters, getI18nId, getActionI18nId, I18nNamespace } from './util/i18n';
 
 export { setChonkyDefaults } from './util/default-config';
 
-export { ChonkyDndFileEntryType } from './types/dnd.types';
+export type { ChonkyDndFileEntryType } from './types/dnd.types';
 export type ChonkyDndFileEntryItem = import('./types/dnd.types').ChonkyDndFileEntryItem;
 
 export type FileActionHandler = GenericFileActionHandler<ChonkyActionUnion>;

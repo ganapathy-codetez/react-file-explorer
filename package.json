@@ -1,20 +1,6 @@
 {
-  "name": "root",
   "private": true,
-  "workspaces": [
-    "packages/*"
-  ],
-  "homepage": "https://chonky.io/",
-  "author": {
-    "name": "Timur Kuzhagaliyev",
-    "email": "tim.kuzh@gmail.com",
-    "url": "https://foxypanda.me/"
-  },
-  "resolutions": {
-    "**/typescript": "5.4.5",
-    "**/immer": "10.1.1"
-  },
   "scripts": {
-    "build": "cd ./packages/chonky && npm run build && cd ../chonky-icon-fontawesome && npm run build"
+    "dev": "pnpm --filter=demo run dev"
   }
 }
